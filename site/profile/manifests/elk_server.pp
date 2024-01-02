@@ -1,3 +1,3 @@
 class profile::elk_server {
-include elk
+  include elk
 }
