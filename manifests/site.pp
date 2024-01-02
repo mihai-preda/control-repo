@@ -1,7 +1,6 @@
   node puppet.local {
   include role::master
-  }
-  node elk.local {
+}
+node elk.local {
   include role::elk
-  }
 }
