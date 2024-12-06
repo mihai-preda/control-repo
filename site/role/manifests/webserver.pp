@@ -3,4 +3,5 @@ class role::webserver {
   # resources
   include profile::base
   include profile::puppet_agent
+  include profile::puppetboard
 }
