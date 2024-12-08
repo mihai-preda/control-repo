@@ -8,4 +8,9 @@ class profile::puppetdb {
     database_password       => 'ctm3muf7tze!PYN@pvj',
   }
   exec { '/opt/puppetlabs/bin/puppetdb ssl-setup -f': }
+  firewall { '100 allow http and https access':
+    dport => [8081, 443],
+    proto => 'tcp',
+    jump  => 'accept',
+  }
 }
