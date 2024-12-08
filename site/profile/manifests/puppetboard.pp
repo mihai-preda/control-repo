@@ -11,6 +11,7 @@ class profile::puppetboard {
     secret_key        => 'guardians0-=1',
     manage_virtualenv => true,
     puppetdb_host     => 'db.preda.ca',
+    puppetdb_port     => 8081,
   }
 
 # Access Puppetboard through pboard.example.com
