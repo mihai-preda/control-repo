@@ -1,5 +1,8 @@
 # base profile
 class profile::base {
+  exec { 'set local':
+    command => 'localectl set-locale LANG=en_GB',
+  }
   package { 'vim':
     ensure => 'present',
   }
