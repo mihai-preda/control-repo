@@ -10,6 +10,7 @@ class profile::puppetboard {
     python_version    => '3.9',
     secret_key        => 'guardians0-=1',
     manage_virtualenv => true,
+    puppetdb_host     => 'db.preda.ca',
   }
 
 # Access Puppetboard through pboard.example.com
