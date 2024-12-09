@@ -23,20 +23,17 @@ class profile::base {
     groups => ['wheel'],
     shell  => '/bin/bash',
   }
-
   file { '/home/mihai':
     ensure => directory,
     owner  => 'mihai',
     group  => 'mihai',
   }
-
   file { '/home/mihai/.ssh':
     ensure => directory,
     owner  => mihai,
     group  => mihai,
     mode   => '0700',
   }
-
   ssh_authorized_key { 'mihai':
     ensure => present,
     user   => 'mihai',
