@@ -21,5 +21,6 @@ class profile::puppetboard {
     ssl        => true,
     ssl_cert   => '/etc/pki/tls/certs/cert.pem',
     ssl_key    => '/etc/pki/tls/private/privatekey.pem',
+    ssl_chain  => '/etc/pki/tls/certs/chain.pem',
   }
 }
