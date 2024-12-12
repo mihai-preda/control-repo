@@ -8,7 +8,7 @@ class profile::puppetboard {
 # Configure Puppetboard
 # SSL certificates are required and puppetboard and
 # puppetdb run on separate hosts
-  $ssl_dir = $settings::ssldir
+  $ssl_dir = '/etc/pki/tls/'
   $puppetboard_certname = $facts['certname']
   class { 'puppetboard':
     python_version      => '3.9',
@@ -17,7 +17,7 @@ class profile::puppetboard {
     groups              => 'apache',
     puppetdb_host       => 'db.preda.ca',
     puppetdb_port       => 8081,
-    puppetdb_key        => "${ssl_dir}/private_keys/${puppetboard_certname}.pem",
+    puppetdb_key        => "${ssl_dir}/private/${puppetboard_certname}.pem",
     puppetdb_ssl_verify => "${ssl_dir}/certs/ca.pem",
     puppetdb_cert       => "${ssl_dir}/certs/${puppetboard_certname}.pem",
   }
