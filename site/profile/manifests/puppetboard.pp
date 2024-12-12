@@ -16,7 +16,6 @@ class profile::puppetboard {
     python_version      => '3.9',
     secret_key          => 'guardians0-=1',
     manage_virtualenv   => true,
-    groups              => 'apache',
     puppetdb_host       => 'db.preda.ca',
     puppetdb_port       => 8081,
     puppetdb_key        => "${ssl_dir}/private/${puppetboard_certname}.pem",
