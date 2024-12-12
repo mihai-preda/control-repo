@@ -9,7 +9,7 @@ class profile::puppetboard {
 # SSL certificates are required and puppetboard and
 # puppetdb run on separate hosts
   $ssl_dir = '/etc/pki/tls/'
-  $puppetboard_certname = $facts['certname']
+  $puppetboard_certname = $facts['fqdn']
   class { 'puppetboard':
     python_version      => '3.9',
     secret_key          => 'guardians0-=1',
