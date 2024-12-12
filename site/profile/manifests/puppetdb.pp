@@ -9,7 +9,7 @@ class profile::puppetdb {
   }
   exec { '/opt/puppetlabs/bin/puppetdb ssl-setup -f': }
   firewall { '100 allow http and https access':
-    dport => [8081, 443],
+    dport => [8081, 8080],
     proto => 'tcp',
     jump  => 'accept',
   }

@@ -34,3 +34,8 @@ class profile::puppetboard {
     ssl_chain  => '/etc/pki/tls/certs/chain.pem',
   }
 }
+firewall { '100 allow http and https access':
+  dport => [80, 443],
+  proto => 'tcp',
+  jump  => 'accept',
+}
