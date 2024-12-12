@@ -7,9 +7,11 @@ class profile::puppetboard {
 
 # Configure Puppetboard
 # SSL certificates are required and puppetboard and
-# puppetdb run on separate hosts
+# puppetdb run on separate hosts. Copied puppet certs from
+# /etc/puppetlabs/puppet/ssl to /etc/pki/tls
+# and pointed this config to them
   $ssl_dir = '/etc/pki/tls/'
-  $puppetboard_certname = $facts['fqdn']
+  $puppetboard_certname = 'web.preda.ca'
   class { 'puppetboard':
     python_version      => '3.9',
     secret_key          => 'guardians0-=1',
