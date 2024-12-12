@@ -10,7 +10,7 @@ class profile::puppetboard {
 # puppetdb run on separate hosts. Copied puppet certs from
 # /etc/puppetlabs/puppet/ssl to /etc/pki/tls
 # and pointed this config to them
-  $ssl_dir = '/etc/pki/tls/'
+  $ssl_dir = '/etc/pki/tls'
   $puppetboard_certname = 'web.preda.ca'
   class { 'puppetboard':
     python_version      => '3.9',
