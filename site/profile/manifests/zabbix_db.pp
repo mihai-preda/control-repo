@@ -1,6 +1,8 @@
 # zabbix db server
 class profile::zabbix_db {
   class { 'mysql::server':
+    package_name     => 'mariadb-server',
+    service_name     => 'mysqld',
     override_options => {
       'mysqld' => {
         'bind_address' => '172.16.10.19',

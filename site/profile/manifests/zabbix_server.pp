@@ -4,7 +4,10 @@ class profile::zabbix_server {
     mpm_module => 'prefork',
   }
   class { 'apache::mod::php': }
-  class { 'mysql::client': }
+  class { 'mysql::client':
+    package_name    => 'mariadb-client',
+    bindings_enable => true,
+  }
   class { 'zabbix::server': }
   class { 'zabbix::web':
     zabbix_url    => 'monitor.preda.ca',
