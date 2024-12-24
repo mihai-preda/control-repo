@@ -1,2 +1,2 @@
-# Class: default
+# role default
 class role::default {}

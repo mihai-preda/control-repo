@@ -1,4 +1,4 @@
-# Class: profile::puppetboard
+# profile puppetboard
 class profile::puppetboard {
   # Configure Apache on this server
   class { 'apache':
