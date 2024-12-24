@@ -13,6 +13,6 @@ mod 'puppet/puppetboard', '10.0.0'
 mod 'puppet/python', '7.4.0'
 mod 'puppet/epel', '5.0.0'
 mod 'puppetlabs/puppet_authorization', '1.0.0'
-mod 'puppet/zabbix',
-mod 'puppetlabs/mysql',
-mod 'puppet/selinux',
+mod 'puppet-zabbix', '10.0.0'
+mod 'puppetlabs-mysql', '16.2.0'
+mod 'puppet-selinux', '5.0.0'
