@@ -3,6 +3,7 @@ class profile::zabbix_db {
   class { 'mysql::server':
     package_name     => 'mariadb-server',
     service_name     => 'mysqld',
+    root_password    => 'AVeryStrongPasswordUShouldEncrypt!',
     override_options => {
       'mysqld' => {
         'bind_address' => '172.16.10.19',
