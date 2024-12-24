@@ -1,5 +1,5 @@
 # zabbix db server
-node 'zdb.preda.ca' {
+class profile::zabbix_db {
   class { 'mysql::server':
     override_options => {
       'mysqld' => {

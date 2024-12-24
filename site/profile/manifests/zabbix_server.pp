@@ -1,5 +1,5 @@
 # zabbix server
-node 'monitor.preda.ca' {
+class profile::zabbix_server {
   class { 'apache':
     mpm_module => 'prefork',
   }
