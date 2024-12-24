@@ -1,5 +1,5 @@
 # zabbix db server
-class profile::zabbix_db {
+class profile::mysql {
   class { 'mysql::server':
     package_name     => 'mariadb-server',
     service_name     => 'mysqld',
