@@ -1,3 +1,3 @@
 # role mysql
 include profile::base
-include profile::mysql
+include profile::zabbix_db
