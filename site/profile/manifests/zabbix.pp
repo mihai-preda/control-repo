@@ -1,6 +1,6 @@
 # zabbix server
-class profile::zabbix {
-  class { 'zabbix':
+class profile::zabbix::web {
+  class { 'zabbix::web':
     zabbix_url        => 'monitor.preda.ca',
     database_type     => 'mysql',
     database_user     => 'zabbix',
@@ -10,7 +10,10 @@ class profile::zabbix {
     mpm_module => 'prefork',
   }
   class { 'apache::mod::php': }
-  class { 'zabbix::web':
+  class { 'mysql::client': }
+  class { 'zabbix::server':
+    database_host => 'zdb.preda.ca',
+    database_type => 'mysql',
   }
   if $facts['os']['selinux']['enabled'] {
     selboolean { ['httpd_can_network_connect', 'httpd_can_network_connect_db']:
