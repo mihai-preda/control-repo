@@ -1,7 +1,7 @@
 # zabbix db server
 class profile::zabbix_db {
-  class { 'zabbix_db':
-    package_name     => 'mariadb-server',
+  package { 'mariadb-server':
+    ensure           => installed,
     service_name     => 'mysqld',
     root_password    => 'AVeryStrongPasswordUShouldEncrypt!',
     override_options => {
