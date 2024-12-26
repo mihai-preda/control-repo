@@ -19,6 +19,7 @@ mod 'puppet/selinux', '5.0.0'
 
 # hiera data
 mod 'data',
-  :git => 'git@github.com:mihai-preda/hiera_data.git',
-  :install_path => :control_branch,
+  :git            => 'git@github.com:mihai-preda/hiera_data.git',
+  :install_path   => '',
+  :branch         => :control_branch,
   :default_branch => 'main'
