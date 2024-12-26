@@ -1,16 +1,5 @@
 # zabbix db server
 class profile::zabbixdb {
-  class { 'mysql::server':
-    ensure                  => 'installed',
-    root_password           => '$trongBad#1',
-    remove_default_accounts => true,
-    restart                 => true,
-    override_options        => $override_options,
-  }
-  mysql_user { '[root@127.0.0.1]':
-    ensure        => present,
-    password_hash => mysql::password($mysql::server::root_password),
-  }
   $override_options = {
     'mysqld' => {
       'port' => 3306,
@@ -26,6 +15,18 @@ class profile::zabbixdb {
       'sort_buffer_size' => '64M',
       'join_buffer_size' => '64M',
     },
+  }
+  class { 'mysql::server':
+    ensure                  => 'installed',
+    root_password           => '$trongBad#1',
+    remove_default_accounts => true,
+    restart                 => true,
+    reload_on_config_change => true,
+    override_options        => $override_options,
+  }
+  mysql_user { '[root@127.0.0.1]':
+    ensure        => present,
+    password_hash => mysql::password($mysql::server::root_password),
   }
   mysql_db { 'zdb1':
     user     => 'zabbix',
