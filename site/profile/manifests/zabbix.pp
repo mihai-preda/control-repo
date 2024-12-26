@@ -6,7 +6,7 @@ class profile::zabbix {
     database_user     => 'zabbix',
     database_password => 'Burninator@1',
   }
-  class { 'apache::mod::php-fpm': }
+  class { 'apache::mod::ssl': }
   class { 'mysql::client': }
   class { 'zabbix::server':
     database_host => 'zdb.preda.ca',
