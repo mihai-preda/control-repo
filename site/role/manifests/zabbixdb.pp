@@ -1,5 +1,5 @@
 # role mysql
-class role::zabixdb {
+class role::zabbixdb {
   include profile::base
   include profile::zabbixdb
 }
