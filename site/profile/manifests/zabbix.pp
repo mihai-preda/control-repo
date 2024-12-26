@@ -6,9 +6,6 @@ class profile::zabbix {
     database_user     => 'zabbix',
     database_password => 'Burninator@1',
   }
-  class { 'apache':
-    mpm_module => 'prefork',
-  }
   class { 'apache::mod::php': }
   class { 'mysql::client': }
   class { 'zabbix::server':
