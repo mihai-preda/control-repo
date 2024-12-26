@@ -4,7 +4,7 @@ node 'monitor.preda.ca' {
     zabbix_url        => 'monitor.preda.ca',
     database_type     => 'mysql',
     database_user     => 'zabbix',
-    database_password => 'QuertY#1',
+    database_password => 'Burninator@1',
   }
   class { 'apache':
     mpm_module => 'prefork',
