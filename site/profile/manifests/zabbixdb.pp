@@ -25,12 +25,7 @@ class profile::zabbixdb {
     reload_on_config_change => true,
     override_options        => $override_options,
   }
-  mysql_user { '[root@127.0.0.1]':
-    ensure        => present,
-    password_hash => mysql::password($mysql::server::root_password),
-  }
-  class { 'mysql::db':
-    db_name  => 'zdb1',
+  mysql::server::db { 'zdb1':
     user     => 'zabbix',
     password => 'Burninator@1',
     host     => '172.16.10.%',
