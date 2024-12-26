@@ -24,13 +24,15 @@ $override_options = {
     'sort_buffer_size' => '64M',
     'join_buffer_size' => '64M',
   },
-# mysql_db { 'zdb1':
+}
+mysql_db { 'zdb1':
   user     => 'zabbix',
   password => 'Burninator@1',
   host     => '172.16.10.%',
   grant    => ['ALL'],
 }
-# class { 'zabbix::database':
-#   database_type => 'mysql',
-#   zabbix_server => 'monitor.preda.ca',
-#   zabbix_web    => 'monitor.preda.ca',
+class { 'zabbix::database':
+  database_type => 'mysql',
+  zabbix_server => 'monitor.preda.ca',
+  zabbix_web    => 'monitor.preda.ca',
+}
