@@ -1,5 +1,5 @@
 # zabbix db server
-class profile::mysql::server {
+class profile::zabbix_db {
   class { 'mysql::server':
     ensure                  => 'installed',
     root_password           => '$trongBad#1',
