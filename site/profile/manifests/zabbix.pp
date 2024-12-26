@@ -12,10 +12,4 @@ class profile::zabbix {
     database_host => 'zdb.preda.ca',
     database_type => 'mysql',
   }
-  if $facts['os']['selinux']['enabled'] {
-    selboolean { ['httpd_can_network_connect', 'httpd_can_network_connect_db']:
-      persistent => true,
-      value      => 'on',
-    }
-  }
 }
