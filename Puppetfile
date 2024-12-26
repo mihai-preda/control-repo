@@ -13,6 +13,12 @@ mod 'puppet/puppetboard', '10.0.0'
 mod 'puppet/python', '7.4.0'
 mod 'puppet/epel', '5.0.0'
 mod 'puppetlabs/puppet_authorization', '1.0.0'
-mod 'puppet-zabbix', '10.0.0'
-mod 'puppetlabs-mysql', '16.2.0'
-mod 'puppet-selinux', '5.0.0'
+mod 'puppet/zabbix', '10.0.0'
+mod 'puppetlabs/mysql', '16.2.0'
+mod 'puppet/selinux', '5.0.0'
+
+# hiera data
+mod 'data',
+  :git => 'git@github.com:mihai-preda/hiera_data.git',
+  :install_path => :control_branch,
+  :default_branch => 'main'

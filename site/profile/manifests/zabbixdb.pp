@@ -19,18 +19,19 @@ class profile::zabbixdb {
   class { 'mysql::server':
     package_name            => 'mariadb-server',
     service_name            => 'mysqld',
+    create_root_user        => true,
     root_password           => '$trongBad#1',
     remove_default_accounts => true,
     restart                 => true,
     reload_on_config_change => true,
     override_options        => $override_options,
   }
-  mysql::server::db { 'zdb1':
-    user     => 'zabbix',
-    password => 'Burninator@1',
-    host     => '172.16.10.%',
-    grant    => ['ALL'],
-  }
+  # mysql::db { 'zdb1':
+  #   user     => 'zabbix',
+  #   password => 'Burninator@1',
+  #   host     => '172.16.10.%',
+  #   grant    => ['ALL'],
+  # }
   class { 'zabbix::database':
     database_type => 'mysql',
     zabbix_server => 'monitor.preda.ca',
