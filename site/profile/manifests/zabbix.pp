@@ -1,5 +1,5 @@
 # zabbix server
-node 'monitor.preda.ca' {
+class profile::zabbix {
   class { 'zabbix::web':
     zabbix_url        => 'monitor.preda.ca',
     database_type     => 'mysql',
