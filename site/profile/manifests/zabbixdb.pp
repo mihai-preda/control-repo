@@ -17,7 +17,8 @@ class profile::zabbixdb {
     },
   }
   class { 'mysql::server':
-    ensure                  => 'installed',
+    package_name            => 'mariadb-server',
+    service_name            => 'mysqld',
     root_password           => '$trongBad#1',
     remove_default_accounts => true,
     restart                 => true,
