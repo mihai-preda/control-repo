@@ -1,6 +1,6 @@
 # zabbix db server
-class profile::mysqlserver {
-  class { 'mysqlserver':
+class profile::mysql::server {
+  class { 'mysql::server':
     ensure                  => installed,
     root_password           => '$trongBad#1',
     remove_default_accounts => true,
