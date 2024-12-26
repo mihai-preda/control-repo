@@ -29,7 +29,8 @@ class profile::zabbixdb {
     ensure        => present,
     password_hash => mysql::password($mysql::server::root_password),
   }
-  mysq::db { 'zdb1':
+  class { 'mysql::db':
+    db_name  => 'zdb1',
     user     => 'zabbix',
     password => 'Burninator@1',
     host     => '172.16.10.%',
