@@ -3,6 +3,7 @@ class profile::zabbixdb {
   $override_options = {
     'mysqld' => {
       'port' => 3306,
+      'bind-address' => '0.0.0.0',
       'back_log' => 50,
       'max_connections' => 100,
       'wait_timeout' => 256,
