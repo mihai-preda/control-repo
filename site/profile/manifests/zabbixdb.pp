@@ -25,14 +25,14 @@ class profile::zabbixdb {
     reload_on_config_change => true,
     override_options        => $override_options,
   }
+  firewall { '201 allow mysql clients to connect':
+    dport => 3306,
+    proto => 'tcp',
+    jump  => 'accept',
+  }
   class { 'zabbix::database':
     database_type => 'mysql',
     zabbix_server => 'monitor.preda.ca',
     zabbix_web    => 'monitor.preda.ca',
-  }
-  class { 'zabbix::firewall':
-    dport => 3306,
-    proto => 'tcp',
-    jump  => 'accept',
   }
 }
