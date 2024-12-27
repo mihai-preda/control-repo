@@ -9,7 +9,9 @@ class profile::zabbix {
   class { 'apache::mod::ssl': }
   class { 'mysql::client': }
   class { 'zabbix::server':
-    database_host => 'zdb.preda.ca',
-    database_type => 'mysql',
+    database_host   => 'zdb.preda.ca',
+    database_type   => 'mysql',
+    zabbix_timezone => 'America/Vancouver',
+    zabbix_version  => '7.0',
   }
 }
