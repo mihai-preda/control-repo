@@ -30,4 +30,9 @@ class profile::zabbixdb {
     zabbix_server => 'monitor.preda.ca',
     zabbix_web    => 'monitor.preda.ca',
   }
+  class { 'zabbix::firewall':
+    dport => 3306,
+    proto => 'tcp',
+    jump  => 'accept',
+  }
 }

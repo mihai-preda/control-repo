@@ -42,4 +42,8 @@ class profile::base {
   }
   notify { 'hello from the puppet server':
   }
+  firewall { '000 accept all icmp requests':
+    proto => 'icmp',
+    jump  => 'accept',
+  }
 }
