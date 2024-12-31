@@ -6,7 +6,7 @@ class profile::zabbix {
     database_user     => 'zabbix',
     database_password => 'Burninator@1',
     manage_repo       => true,
-    zabbix_version    => '6.0',
+    zabbix_version    => '7.0',
   }
   class { 'apache::mod::ssl': }
   class { 'mysql::client': }
