@@ -13,3 +13,4 @@ class profile::r10k {
       protected => false,
     },
   }
+}
