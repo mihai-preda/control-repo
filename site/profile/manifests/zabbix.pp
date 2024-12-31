@@ -12,4 +12,8 @@ class profile::zabbix {
     database_host => 'zdb.preda.ca',
     database_type => 'mysql',
   }
+  class { 'zabbix::repo':
+    zabbix_version => 7.0,
+    manage_repo    => true,
+  }
 }
