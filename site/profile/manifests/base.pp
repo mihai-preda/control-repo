@@ -3,21 +3,6 @@ class profile::base {
   exec { 'set local':
     command => '/bin/localectl set-locale LANG=en_GB',
   }
-  package { 'vim':
-    ensure => 'present',
-  }
-  package { 'bash-completion':
-    ensure => 'present',
-  }
-  package { 'telnet':
-    ensure => 'present',
-  }
-  package { 'bind-utils':
-    ensure => 'present',
-  }
-  package { 'net-tools':
-    ensure => 'present',
-  }
   user { 'mihai':
     ensure => 'present',
     groups => ['wheel'],
