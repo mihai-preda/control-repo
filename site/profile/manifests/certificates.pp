@@ -1,7 +1,7 @@
 # certificates profile
 class profile::certificates {
   $ssl_dir = '/etc/pki/tls'
-  $ssl_files = '/puppet_course/files'
+  $ssl_files = '/control-repo/data/manifests/site/files'
   file { 'certificate':
     ensure => file,
     owner  => root,
