@@ -4,5 +4,4 @@ class role::webserver {
   include profile::puppet_agent
   include profile::puppetboard
   include profile::zabbix_agent
-  include profile::certificates
 }
