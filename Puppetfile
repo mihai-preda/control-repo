@@ -1,4 +1,4 @@
-mod 'puppetlabs/postgresql', '10.3.0'
+mod 'puppetlabs/postgresql', '10.4.0'
 mod 'puppetlabs/puppet_agent', '4.21.0'
 mod 'puppetlabs/facts', '1.6.0'
 mod 'puppetlabs/apache', '12.2.0'
