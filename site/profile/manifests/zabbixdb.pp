@@ -4,18 +4,10 @@ class profile::zabbixdb {
     'mysqld' => {
       'port' => '3306',
       'bind-address' => '0.0.0.0',
-      'back_log' => '50',
-      'max_connections' => '100',
-      'wait_timeout' => '256',
-      'max_connect_errors' => '10',
-      'max_allowed_packet' => '16M',
-      'max_heap_table_size' => '512M',
-      'read_buffer_size' => '64M',
-      'read_rnd_buffer_size' => '64M',
-      'sort_buffer_size' => '64M',
-      'join_buffer_size' => '64M',
+      'datadir' => '/var/lib/mysql',
       'socket' => '/var/lib/mysql/mysql.sock',
-      'pid-file'        => '/var/run/mariadb/mariadb.pid',
+      'log-error' => '/var/log/mariadb/mariadb.log',
+      'pid-file' => '/run/mariadb/mariadb.pid',
     },
   }
   class { 'mysql::server':
