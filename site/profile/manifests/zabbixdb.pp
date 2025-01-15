@@ -15,7 +15,7 @@ class profile::zabbixdb {
       'sort_buffer_size' => '64M',
       'join_buffer_size' => '64M',
       'socket' => '/var/lib/mysql/mysql.sock',
-      'pid-file'        => '/var/run/mariadb/mysqld.pid',
+      'pid-file'        => '/var/run/mariadb/mariadb.pid',
     },
   }
   class { 'mysql::server':
