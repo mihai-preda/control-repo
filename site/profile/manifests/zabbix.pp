@@ -14,7 +14,7 @@ class profile::zabbix {
     database_host => 'zdb.preda.ca',
     database_type => 'mysql',
   }
-  class { 'default-ssl':
+  class { 'apache':
     port              => 443,
     ssl               => true,
     default_ssl_cert  => '/etc/pki/tls/certs/cert.pem',
