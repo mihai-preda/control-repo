@@ -2,18 +2,20 @@
 class profile::zabbixdb {
   $override_options = {
     'mysqld' => {
-      'port' => 3306,
+      'port' => '3306',
       'bind-address' => '0.0.0.0',
-      'back_log' => 50,
-      'max_connections' => 100,
-      'wait_timeout' => 256,
-      'max_connect_errors' => 10,
+      'back_log' => '50',
+      'max_connections' => '100',
+      'wait_timeout' => '256',
+      'max_connect_errors' => '10',
       'max_allowed_packet' => '16M',
       'max_heap_table_size' => '512M',
       'read_buffer_size' => '64M',
       'read_rnd_buffer_size' => '64M',
       'sort_buffer_size' => '64M',
       'join_buffer_size' => '64M',
+      'socket' => '/var/lib/mysql/mysql.sock',
+      'pid-file'        => '/var/run/mariadb/mysqld.pid',
     },
   }
   class { 'mysql::server':
