@@ -12,7 +12,6 @@ class profile::zabbixdb {
   }
   class { 'mysql::server':
     package_name            => 'mariadb-server',
-    service_name            => 'mysqld',
     create_root_user        => true,
     root_password           => '$trongBad#1',
     restart                 => true,
