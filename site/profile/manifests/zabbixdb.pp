@@ -23,7 +23,6 @@ class profile::zabbixdb {
     service_name            => 'mysqld',
     create_root_user        => true,
     root_password           => '$trongBad#1',
-    remove_default_accounts => true,
     restart                 => true,
     reload_on_config_change => true,
     override_options        => $override_options,
