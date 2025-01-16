@@ -4,7 +4,7 @@ class profile::zabbix {
     manage_vhost      => true,
     zabbix_url        => 'monitor.preda.ca',
     database_type     => 'mysql',
-    database_user     => 'zabbix',
+    database_user     => 'zabbix_server',
     database_password => 'Burninator@1',
     manage_repo       => true,
     zabbix_version    => '6.0',
