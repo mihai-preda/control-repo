@@ -24,8 +24,11 @@ class profile::zabbixdb {
     jump  => 'accept',
   }
   class { 'zabbix::database':
-    database_type => 'mysql',
-    zabbix_server => 'monitor.preda.ca',
-    zabbix_web    => 'monitor.preda.ca',
+    database_name     => 'zabbix_server',
+    database_user     => 'zabbix_server',
+    database_password => 'Burninator@1',
+    database_type     => 'mysql',
+    zabbix_server     => 'monitor.preda.ca',
+    zabbix_web        => 'monitor.preda.ca',
   }
 }
