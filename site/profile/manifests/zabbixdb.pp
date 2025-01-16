@@ -17,9 +17,6 @@ class profile::zabbixdb {
     restart                 => true,
     reload_on_config_change => true,
     override_options        => $override_options,
-    database_name           => 'zabbix_server',
-    database_user           => 'zabbix_server',
-    database_password       => 'Burninator@1',
   }
   firewall { '201 allow mysql clients to connect':
     dport => 3306,
