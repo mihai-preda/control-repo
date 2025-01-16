@@ -8,7 +8,7 @@ class profile::zabbix {
     manage_repo       => true,
     zabbix_version    => '6.0',
   }
-  class { 'apache::mod::ssl':
+  class { 'apache':
     port              => 443,
     ssl               => true,
     default_ssl_cert  => '/etc/pki/tls/certs/cert.pem',
