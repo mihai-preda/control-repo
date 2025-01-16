@@ -1,4 +1,6 @@
 # zabbix server
+# the db_host and db_type variables have to be declared
+# in both sections below for successful connection
 class profile::zabbix {
   class { 'zabbix::web':
     manage_vhost     => true,
@@ -20,5 +22,10 @@ class profile::zabbix {
     database_type     => 'mysql',
     database_user     => 'zabbix_server',
     database_password => 'Burninator@1',
+  }
+  firewall { '100 allow http and https access':
+    dport => [10050, 10051],
+    proto => 'tcp',
+    jump  => 'accept',
   }
 }
