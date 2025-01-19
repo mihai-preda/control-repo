@@ -17,11 +17,12 @@ class profile::zabbix {
   class { 'apache::mod::ssl': }
   class { 'mysql::client': }
   class { 'zabbix::server':
-    database_host     => 'zdb.preda.ca',
-    database_name     => 'zabbixdb',
-    database_type     => 'mysql',
-    database_user     => 'zabbixuser',
-    database_password => 'Burninator@1',
+    database_host           => 'zdb.preda.ca',
+    database_name           => 'zabbixdb',
+    database_type           => 'mysql',
+    database_user           => 'zabbixuser',
+    database_password       => 'Burninator@1',
+    remove_default_accounts => true,
   }
   firewall { '100 allow zabbix agent and zabbix server access':
     dport => [10050, 10051],
