@@ -17,6 +17,7 @@ class profile::zabbixdb {
     restart                 => true,
     reload_on_config_change => true,
     override_options        => $override_options,
+    remove_default_accounts => true,
   }
   firewall { '201 allow mysql clients to connect':
     dport => 3306,
@@ -27,6 +28,5 @@ class profile::zabbixdb {
     database_type => 'mysql',
     zabbix_server => 'monitor.preda.ca',
     zabbix_web    => 'monitor.preda.ca',
-    remove_default_accounts => true,
   }
 }
