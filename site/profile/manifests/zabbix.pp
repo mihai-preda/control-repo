@@ -18,9 +18,9 @@ class profile::zabbix {
   class { 'mysql::client': }
   class { 'zabbix::server':
     database_host     => 'zdb.preda.ca',
-    database_name     => 'zabbixdb',
+    database_name     => 'zabbix_server',
     database_type     => 'mysql',
-    database_user     => 'zabbixuser',
+    database_user     => 'zabbix_server',
     database_password => 'Burninator@1',
   }
   firewall { '100 allow zabbix agent and zabbix server access':
