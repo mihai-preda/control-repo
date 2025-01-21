@@ -9,16 +9,19 @@ class profile::zabbix {
     zabbix_version   => '6.0',
     apache_use_ssl   => true,
     database_host    => 'zdb.preda.ca',
-    database_type    => 'postgresql',
+    database_type    => 'mysql',
     apache_ssl_cert  => '/etc/pki/tls/certs/cert.pem',
     apache_ssl_key   => '/etc/pki/tls/private/privatekey.pem',
     apache_ssl_chain => '/etc/pki/tls/certs/chain.pem',
   }
   class { 'apache::mod::ssl': }
-  class { 'postgresql::client': }
+  class { 'mysql::client': }
   class { 'zabbix::server':
-    database_host => 'zdb.preda.ca',
-    database_type => 'postgresql',
+    database_host     => 'zdb.preda.ca',
+    database_name     => 'zabbix_server',
+    database_type     => 'mysql',
+    database_user     => 'zabbix_server',
+    database_password => 'Burninator@1',
   }
   firewall { '100 allow zabbix agent and zabbix server access':
     dport => [10050, 10051],
