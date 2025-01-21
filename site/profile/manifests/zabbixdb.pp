@@ -27,5 +27,6 @@ class profile::zabbixdb {
     database_type => 'mysql',
     zabbix_server => 'monitor.preda.ca',
     zabbix_web    => 'monitor.preda.ca',
+    remove_default_accounts => true,
   }
 }
