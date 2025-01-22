@@ -16,6 +16,7 @@ class profile::zabbix {
   class { 'postgresql::client': }
   class { 'zabbix::server':
     database_host     => 'zdb.preda.ca',
+    database_name     => 'zabbixdb',
     database_user     => 'zabbix_user',
     database_type     => 'postgresql',
     database_password => 'Burninator@1',
