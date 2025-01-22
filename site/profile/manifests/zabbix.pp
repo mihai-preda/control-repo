@@ -1,6 +1,4 @@
-# zabbix server
-# the db_host and db_type variables have to be declared
-# in both sections below for successful connection
+# zabbix server profile
 class profile::zabbix {
   class { 'zabbix::web':
     manage_vhost     => true,
