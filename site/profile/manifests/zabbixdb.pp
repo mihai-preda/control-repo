@@ -1,8 +1,5 @@
 # zabbix db server
 class profile::zabbixdb {
-  class { 'postgresql::server':
-    listen_addresses  => '0.0.0.0',
-  }
   class { 'zabbix::database':
     database_type     => 'postgresql',
     manage_database   => true,
