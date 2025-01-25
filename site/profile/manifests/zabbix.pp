@@ -16,7 +16,7 @@ class profile::zabbix {
   class { 'apache::mod::ssl': }
   class { 'postgresql::client': }
   class { 'zabbix::server':
-    database_host     => 'zdb.preda.ca',
+    database_host     => 'db.preda.ca',
     database_name     => 'zabbixdb',
     database_user     => 'zabbix_user',
     database_type     => 'postgresql',
