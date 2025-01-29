@@ -3,6 +3,11 @@ class profile::base {
   exec { 'set local':
     command => '/bin/localectl set-locale LANG=en_GB',
   }
+  file { 'resolve dot conf':
+    ensure => 'file',
+    source => '/site/files/resolv.conf',
+    path   => '/etc/resolv.conf',
+  }
   user { 'mihai':
     ensure => 'present',
     groups => ['wheel'],
