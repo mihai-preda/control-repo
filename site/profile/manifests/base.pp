@@ -1,11 +1,11 @@
 # base profile
 class profile::base {
-  exec { 'set local':
+  exec { 'set locale':
     command => '/bin/localectl set-locale LANG=en_GB',
   }
   file { 'resolve dot conf':
     ensure => 'file',
-    source => '/control-repo/site/files/resolv.conf',
+    source => '/etc/puppetlabs/code/environments/site/files/resolv.conf',
     path   => '/etc/resolv.conf',
   }
   user { 'mihai':
