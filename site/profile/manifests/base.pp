@@ -5,7 +5,7 @@ class profile::base {
   }
   file { 'resolve dot conf':
     ensure => 'file',
-    source => '/site/files/resolv.conf',
+    source => '/control-repo/site/files/resolv.conf',
     path   => '/etc/resolv.conf',
   }
   user { 'mihai':
