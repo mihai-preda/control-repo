@@ -3,11 +3,6 @@ class profile::base {
   exec { 'set locale':
     command => '/bin/localectl set-locale LANG=en_GB',
   }
-  file { 'resolve dot conf':
-    ensure => 'file',
-    source => '/etc/puppetlabs/code/environments/site/files/resolv.conf',
-    path   => '/etc/resolv.conf',
-  }
   user { 'mihai':
     ensure => 'present',
     groups => ['wheel'],
