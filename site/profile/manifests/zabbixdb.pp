@@ -9,7 +9,7 @@ class profile::zabbixdb {
     database_password => 'Burninator@1',
     database_name     => 'zabbixdb',
   }
-  firewall { '100 allow zabbix server access to pgsql':
+  firewall { '200 allow zabbix server access to pgsql':
     dport => [5432],
     proto => 'tcp',
     jump  => 'accept',
