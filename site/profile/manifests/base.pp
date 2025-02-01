@@ -3,18 +3,18 @@ class profile::base {
   exec { 'set locale':
     command => '/bin/localectl set-locale LANG=en_GB',
   }
-  service { 'NetworkManager':
-    ensure => 'stopped',
-    enable => 'false',
-  }
-  network_route { '10.24.0.0/24':
-    ensure    => 'present',
-    gateway   => '10.24.0.1',
-    interface => 'eth1',
-    netmask   => '255.255.255.0',
-    network   => '10.24.0.0',
-    options   => 'table 200',
-  }
+  # service { 'NetworkManager':
+  #   ensure => 'stopped',
+  #   enable => 'false',
+  # }
+  # network_route { '172.16.1.0/24':
+  #   ensure    => 'present',
+  #   gateway   => '172.16.1.1',
+  #   interface => 'eth1',
+  #   netmask   => '255.255.255.0',
+  #   network   => '172.16.1.0',
+  #   options   => 'table 200',
+  # }
   user { 'mihai':
     ensure => 'present',
     groups => ['wheel'],
