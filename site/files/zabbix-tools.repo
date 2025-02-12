@@ -1,6 +1,0 @@
-[zabbix-tools]
-name=Zabbix Official Repository (tools) - $basearch
-baseurl=https://repo.zabbix.com/zabbix-tools/rhel/9/$basearch/
-enabled=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-TOOLS
-gpgcheck=1
