@@ -2,6 +2,7 @@
 class profile::zabbix {
   class { 'zabbix::web':
     manage_vhost     => true,
+    manage_selinux   => true,
     zabbix_url       => 'monitor.preda.ca',
     zabbix_timezone  => 'America/Vancouver',
     manage_repo      => true,
