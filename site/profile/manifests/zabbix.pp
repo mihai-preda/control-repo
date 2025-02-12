@@ -10,7 +10,7 @@ class profile::zabbix {
     manage_repo       => true,
     zabbix_version    => '6.0',
     apache_use_ssl    => true,
-    database_host     => 'zdb.preda.ca',
+    database_host     => 'db.preda.ca',
     database_type     => 'postgresql',
     apache_ssl_cert   => '/etc/pki/tls/certs/cert.pem',
     apache_ssl_key    => '/etc/pki/tls/private/privatekey.pem',
