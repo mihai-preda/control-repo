@@ -3,6 +3,9 @@ class profile::base {
   exec { 'set locale':
     command => '/bin/localectl set-locale LANG=en_GB',
   }
+  package { 'htop':
+    ensure => 'present',
+  }
   user { 'mihai':
     ensure => 'present',
     groups => ['wheel'],
