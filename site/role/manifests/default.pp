@@ -1,4 +1,2 @@
 # role default
-class role::default {
-  include profile::epel
-}
+class role::default {}
