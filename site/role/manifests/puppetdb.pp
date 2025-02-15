@@ -5,5 +5,5 @@ class role::puppetdb {
   include profile::puppetdb
   include profile::zabbixdb
   include profile::zabbix_agent
-  #include profile::epel
+  include profile::epel
 }
