@@ -3,6 +3,10 @@ class profile::base {
   exec { 'set locale':
     command => '/bin/localectl set-locale LANG=en_GB',
   }
+  file { 'Resolv Conf':
+    ensure => 'file',
+    source => '/control-repo/site/files/resolv.conf',
+  }
   package { 'htop':
     ensure => 'present',
   }
