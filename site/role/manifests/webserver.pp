@@ -5,4 +5,5 @@ class role::webserver {
   include profile::puppetboard
   include profile::zabbix_agent
   include epel
+  include profile::resolver
 }
