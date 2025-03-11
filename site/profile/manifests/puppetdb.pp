@@ -6,6 +6,7 @@ class profile::puppetdb {
     database_host           => 'db.preda.ca',
     database_listen_address => '0.0.0.0',
     database_password       => 'ctm3muf7tze!PYN@pvj',
+    node_purge_ttl          => '3',
   }
   exec { '/opt/puppetlabs/bin/puppetdb ssl-setup -f': }
   firewall { '100 allow http and https access':
