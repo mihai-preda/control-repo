@@ -2,6 +2,7 @@
 #
 class profile::zabbix_windows {
   $tmpdir = 'C:\Windows\Temp';
+  $url = 'url';
   file { 'get zabbix-installer.msi':
     url                   => 'https://cdn.zabbix.com/zabbix/binaries/stable/6.0/6.0.39/zabbix_agent2_plugins-6.0.39-windows-amd64.msi',
     destination_directory => $tmpdir,
