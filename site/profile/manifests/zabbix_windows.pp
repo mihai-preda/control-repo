@@ -1,10 +1,6 @@
 # Zabbix Agent 2 on Windows
-# Class: profile::zabbix_windows
-#
 #
 class profile::zabbix_windows {
-  # resources
-
   $tmpdir = $facts['windows_env']['TMP'];
 
   download_file { 'get zabbix-installer.msi':
