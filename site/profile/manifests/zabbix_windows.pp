@@ -1,7 +1,7 @@
 # Zabbix Agent 2 on Windows
 #
 class profile::zabbix_windows {
-  $tmpdir = $facts['windows_env']['TMP'];
+  $tmpdir = 'C:\Windows\Temp';
 
   download_file { 'get zabbix-installer.msi':
     url                   => 'https://cdn.zabbix.com/zabbix/binaries/stable/6.0/6.0.39/zabbix_agent2_plugins-6.0.39-windows-amd64.msi',
@@ -10,7 +10,7 @@ class profile::zabbix_windows {
   }
 
   class { 'zabbix::agent':
-    zabbix_version          => $zabbix_version,
+    zabbix_version          => '6.0.39',
     manage_resources        => true,
     manage_choco            => false,
     zabbix_package_agent    => 'Zabbix Agent 2 (64-bit)',
