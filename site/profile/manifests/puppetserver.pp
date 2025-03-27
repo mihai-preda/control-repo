@@ -30,6 +30,7 @@ class profile::puppetserver {
       { 'name' => 'Nodes yaml', 'paths' => ['nodes/%{trusted.certname}.yaml', 'nodes/%{osfamily}.yaml'] },
       { 'name' => 'Default yaml file', 'path' => 'common.yaml' },
     ],
+    manage_eyaml_package => true,
     eyaml                => true,
     eyaml_gpg            => false,
     eyaml_gpg_recipients => 'mihai@preda.ca',
