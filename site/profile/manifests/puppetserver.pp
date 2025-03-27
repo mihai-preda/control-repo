@@ -23,11 +23,11 @@ class profile::puppetserver {
     manage_routes           => true,
   }
   class { 'hiera':
+    hiera5_defaults      => { 'datadir' => 'data', 'data_hash' => 'yaml_data' },
     hierarchy            => [
-      'nodes/%{clientcert}',
-      'locations/%{location}',
-      'environments/%{applicationtier}',
-      'common',
+      { 'name' => 'Virtual yaml', 'path'  => 'virtual/%{virtual}.yaml' },
+      { 'name' => 'Nodes yaml', 'paths' => ['nodes/%{trusted.certname}.yaml', 'nodes/%{osfamily}.yaml'] },
+      { 'name' => 'Default yaml file', 'path' => 'common.yaml' },
     ],
     eyaml                => true,
     eyaml_gpg            => false,
