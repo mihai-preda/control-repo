@@ -28,7 +28,7 @@ class profile::puppetserver {
     hierarchy            => [
       'nodes/%{trusted.certname}.yaml',
       'os/%{facts.os.family}.yaml',
-      'common.yaml',
+      'common',
     ],
     eyaml                => true,
     eyaml_gpg            => false,
