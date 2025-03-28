@@ -1,6 +1,6 @@
 # site
 node 'db.preda.ca' { include role::puppetdb }
-node default { include role::default }
+node default { include data }
 node 'puppet.preda.ca' { include role::puppetserver }
 node 'web.preda.ca' { include role::webserver }
 node 'monitor.preda.ca' { include role::zabbix }
