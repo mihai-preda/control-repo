@@ -1,0 +1,25 @@
+# data/accounts
+---
+accounts::group_defaults:
+  system: true
+accounts::group_list:
+  admins: {}
+  users:  {}
+accounts::user_defaults:
+  groups: [ 'users' ]
+  managehome: true
+  system:     false
+accounts::user_list:
+  admin:
+    groups: ['admins', 'users']
+  mihai:
+    sshkeys:
+      - &mihai_sshkey 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4AaxouynKJqYufoNqj7l0K+bJFcFNWWZALpTtRnkKA'
+  sally:
+    sshkeys:
+      - &sally_sshkey 'ssh-rsa ... sally@corp.com'
+  dba:
+    sshkeys:
+      - *mihai_sshkey
+      - *sally_sshkey
+    system: true
