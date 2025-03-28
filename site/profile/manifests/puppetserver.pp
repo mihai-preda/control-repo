@@ -24,6 +24,7 @@ class profile::puppetserver {
   }
   class { 'hiera':
     hierarchy            => [
+      'accounts',
       'nodes/%{trusted.certname}.yaml',
       'os/%{facts.os.family}.yaml',
       'common',
