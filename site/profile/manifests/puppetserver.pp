@@ -25,7 +25,6 @@ class profile::puppetserver {
   class { 'hiera':
     hiera5_defaults      => { 'datadir' => 'data', 'data_hash' => 'yaml_data' },
     hierarchy            => [
-      'accounts',
       'nodes/%{trusted.certname}.yaml',
       'os/%{facts.os.family}.yaml',
       'common',
