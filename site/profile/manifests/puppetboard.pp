@@ -4,7 +4,9 @@ class profile::puppetboard {
   class { 'apache':
     default_vhost => false,
   }
-  class { 'apache::mod::status': }
+  class { 'apache::mod::status':
+    requires => 'ip 127.0.0.1 ::1 10.21.2.0/24',
+  }
 
 # Configure Puppetboard
 # SSL certificates are required when puppetboard and
