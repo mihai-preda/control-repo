@@ -27,7 +27,7 @@ class profile::puppetboard {
 # Access Puppetboard through pboard.example.com
   class { 'puppetboard::apache::vhost':
     vhost_name => 'web.preda.ca',
-    ports      => [80, 443],
+    port       => 443,
     ssl        => true,
     ssl_cert   => '/etc/pki/tls/certs/cert.pem',
     ssl_key    => '/etc/pki/tls/private/privatekey.pem',
