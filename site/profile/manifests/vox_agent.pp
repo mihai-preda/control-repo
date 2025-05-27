@@ -5,4 +5,7 @@ class profile::vox_agent {
     provider => rpm,
     source   => 'https://yum.voxpupuli.org/openvox8-release-fedora-41.noarch.rpm',
   }
+  package { 'openvox-agent':
+    ensure => 'present',
+  }
 }
