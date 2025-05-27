@@ -3,5 +3,5 @@ class role::sp1 {
   #include profile::zabbix_agent
   include profile::resolver
   #include profile::base
-  include profile::puppet_agent
+  #include profile::puppet_agent
 }
