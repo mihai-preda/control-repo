@@ -1,2 +1,4 @@
 # data/nodes/puppet.preda.ca.yaml
 ---
+
+include ::accounts
