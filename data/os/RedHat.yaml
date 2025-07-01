@@ -11,7 +11,7 @@ accounts::user_defaults:
   system: false
 accounts::user_list:
   admin:
-    groups: ["admins", "sudonopw"]
+    groups: ["admins", "users"]
   mihai:
     sshkeys:
       - &mihai_sshkey "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4AaxouynKJqYufoNqj7l0K+bJFcFNWWZALpTtRnkKA mhai@preda.ca"
