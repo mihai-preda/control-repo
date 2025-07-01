@@ -26,9 +26,6 @@ class profile::puppetserver {
     hiera_version        => '5',
     hiera5_defaults      => { 'datadir' => 'data', 'data_hash' => 'yaml_data' },
     hierarchy            => [
-      # 'nodes/%{trusted.certname}.yaml',
-      # 'os/%{facts.os.family}.yaml',
-      # 'common.yaml',
       { 'name' => 'Nodes yaml', 'paths' => ['nodes/%{trusted.certname}.yaml', 'nodes/%{osfamily}.yaml'] },
       { 'name' => 'Default yaml file', 'path' => 'common.yaml' },
     ],
