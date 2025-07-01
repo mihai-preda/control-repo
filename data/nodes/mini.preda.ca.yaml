@@ -1,4 +1,3 @@
 # mac mini server
 ---
-
 puppet::client_package: openvox-agent
