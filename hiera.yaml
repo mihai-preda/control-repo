@@ -1,3 +1,5 @@
+# this file is for ref only
+# hiera is managed by puppetserver.pp
 ---
 version: 5
 defaults:

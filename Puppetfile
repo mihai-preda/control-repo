@@ -1,4 +1,5 @@
 mod 'puppetlabs/postgresql', '10.5.0'
+mod 'theforeman-puppet', '21.0.0'
 mod 'puppetlabs/puppet_agent', '4.22.0'
 mod 'puppetlabs/facts', '1.7.0'
 mod 'puppetlabs/apache', '12.2.0'
