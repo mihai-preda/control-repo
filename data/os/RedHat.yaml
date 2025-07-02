@@ -19,3 +19,10 @@ accounts::user_list:
     sshkeys:
       - *mihai_sshkey
     system: true
+stdlib::manage::create_resources:
+  file:
+    /etc/sudoers.d:
+      ensure: file
+      owner: root
+      group: root
+      content: "%admins ALL=(ALL) NOPASSWD: ALL"
