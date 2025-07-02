@@ -21,7 +21,7 @@ accounts::user_list:
     system: true
 stdlib::manage::create_resources:
   file:
-    /etc/sudoers.d:
+    /etc/sudoers.d/admins:
       ensure: file
       owner: root
       group: root
