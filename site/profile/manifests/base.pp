@@ -8,7 +8,7 @@ class profile::base {
   }
   file_line { 'sudo_rule_nopw':
     path => '/etc/sudoers',
-    line => '%sudonopw ALL=(ALL) NOPASSWD: ALL',
+    line => '%admins ALL=(ALL) NOPASSWD: ALL',
   }
   # user { 'mihai':
   #   ensure => 'present',
