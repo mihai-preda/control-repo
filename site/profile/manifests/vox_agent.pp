@@ -1,10 +1,13 @@
 # install openvox agent
-class profile::vox_agent {
-  $release=8
+class openvox_repo (
+  Integer $release = 8,
+) {
+  include yum
+
   $os_name = $facts['os']['name'] ? {
-    'Fedora' => 'fedora',
-    'Amazon' => 'amazon',
-    default  => 'el',
+    'Fedora'  => 'fedora',
+    'Amazon'  => 'amazon',
+    default   => 'el',
   }
 
   yum::install { "openvox${release}-release":
