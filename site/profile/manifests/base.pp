@@ -6,6 +6,10 @@ class profile::base {
   package { 'htop':
     ensure => 'present',
   }
+  file_line { 'sudo_rule_nopw':
+    path => '/etc/sudoers',
+    line => '%sudonopw ALL=(ALL) NOPASSWD: ALL',
+  }
   # user { 'mihai':
   #   ensure => 'present',
   #   groups => ['wheel'],
