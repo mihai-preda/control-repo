@@ -1,6 +1,4 @@
 # install openvox agent
-include yum
-# class profile::vox_agent
 class profile::vox_agent {
   $release=8
   $os_name = $facts['os']['name'] ? {
