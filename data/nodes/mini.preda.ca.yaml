@@ -1,3 +1,5 @@
 # mac mini server
 ---
 puppet::client_package: openvox-agent
+puppet::config::agent: 
+  runinterval: 2h
