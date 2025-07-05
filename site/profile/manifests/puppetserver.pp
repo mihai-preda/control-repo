@@ -28,7 +28,7 @@ class profile::puppetserver {
     hierarchy       => [
       { 'name' => 'Virtual yaml', 'path'  => 'virtual/%{virtual}.yaml' },
       { 'name' => 'Nodes yaml', 'path' => 'nodes/%{trusted.certname}.yaml' },
-      { 'name' => 'OsFamily yaml', 'path' => 'os/%{osfamily}.yaml' },
+      { 'name' => 'OsFamily yaml', 'path' => 'os/%{facts.os.family}.yaml' },
       { 'name' => 'Default yaml file', 'path' => 'common.yaml' },
     ],
   }

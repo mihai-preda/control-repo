@@ -1,7 +1,5 @@
 # data/nodes/app-srv1.preda.ca.yaml
 ---
-classes:
-  - openssl
 openssl::certificates:
   hostcert:
     commonname: "%{facts['networking']['fqdn']}"
