@@ -5,5 +5,5 @@ class role::puppetserver {
   #include profile::zabbix_agent
   #include epel
   include profile::resolver
-  include accounts
+  #include accounts
 }
