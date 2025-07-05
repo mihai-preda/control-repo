@@ -9,8 +9,4 @@ class profile::tomcat {
   package { 'java-17-openjdk-headless':
     ensure => 'present',
   }
-  class { 'openssl':
-    package_ensure         => latest,
-    ca_certificates_ensure => latest,
-  }
 }
