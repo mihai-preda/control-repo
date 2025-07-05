@@ -14,6 +14,10 @@ accounts::user_list:
     groups: [wheel, users]
     sshkeys:
       - &mihai_sshkey "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4AaxouynKJqYufoNqj7l0K+bJFcFNWWZALpTtRnkKA mhai@preda.ca"
+  bart:
+    groups: [users]
+    sshkeys:
+      - &bart_key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4AaxouynKJqYufoNqj7l0K9+klmsa bart@preda.ca"    
   dba:
     sshkeys:
       - *mihai_sshkey
