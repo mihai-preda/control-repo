@@ -1,0 +1,8 @@
+# data/nodes/app-srv1.preda.ca.yaml
+---
+openssl::certificates:
+  hostcert:
+    commonname: "%{facts['networking']['fqdn']}"
+  othercert:
+    commonname: "app-srv1.preda.ca"
+    owner: root
