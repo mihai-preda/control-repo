@@ -9,4 +9,36 @@ class profile::tomcat {
   package { 'java-17-openjdk-headless':
     ensure => 'present',
   }
+  file { $keystore_path:
+    ensure         => file,
+    source         => $keystore_source,
+    owner          => $keystore_user,
+    mode           => '0400',
+    checksum       => 'md5',
+    checksum_value => $keystore_checksum,
+  }
+
+  -> tomcat::config::server::connector { "${tomcat_instance}-https":
+    catalina_base         => $catalina_base,
+    port                  => $https_port,
+    protocol              => $http_version,
+    purge_connectors      => true,
+    cert_key_file         => '/etc/pki/tls/private/key.pem',
+    cert_file             => '/etc/pki/tls/certs/cert.pem',
+    cert_chain_file       => '/etc/pki/tls/certs/chain.pem',
+    cert_type             => 'EC',
+    additional_attributes => {
+      'SSLEnabled'          => bool2str($https_enabled),
+      'maxThreads'          => $https_connector_max_threads,
+      'scheme'              => $https_connector_scheme,
+      'secure'              => bool2str($https_connector_secure),
+      'clientAuth'          => bool2str($https_connector_client_auth),
+      'sslProtocol'         => $https_connector_ssl_protocol,
+      'sslEnabledProtocols' => join($https_connector_ssl_protocols_enabled, ','),
+      'ciphers'             => join($ciphers_enabled, ','),
+
+      'keystorePass'        => $keystore_pass.unwrap,
+      'keystoreFile'        => $keystore_path,
+    },
+  }
 }
