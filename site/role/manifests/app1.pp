@@ -1,4 +1,4 @@
 # app1 role
-class role::appe1 {
+class role::app1 {
   include profile::tomcat
 }
