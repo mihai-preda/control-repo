@@ -6,4 +6,7 @@ class profile::tomcat {
   tomcat::instance { 'default':
     catalina_home => '/opt/tomcat',
   }
+  package { 'java-17-openjdk-headless':
+    ensure => 'present',
+  }
 }
