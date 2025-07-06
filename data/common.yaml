@@ -1,3 +1,5 @@
 # this is the default yaml file for all evnrionments and nodes
 ---
-
+openssl::certificates:
+  hostcert:
+    commonname: "%{facts['networking']['fqdn']}"
