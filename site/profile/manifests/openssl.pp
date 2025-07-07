@@ -5,15 +5,15 @@ class profile::openssl {
     ca_certificates_ensure => latest,
   }
   $fqdn = $facts['networking']['fqdn']
-  class { 'openssl::configs':
-    country   => 'CA',
-    locality  => 'Burnaby',
-    state     => 'British Columbia',
-    conffiles => { '/etc/pki/tls/misc/openssl.conf' => { ensure => 'present',
-        commonname                                              => $fqdn,
-      organization                                              => 'Preda.ca' },
-    },
-  }
+  # class { 'openssl::configs':
+  #   country   => 'CA',
+  #   locality  => 'Burnaby',
+  #   state     => 'British Columbia',
+  #   conffiles => { '/etc/pki/tls/misc/openssl.conf' => { ensure => 'present',
+  #       commonname                                              => $fqdn,
+  #     organization                                              => 'Preda.ca' },
+  #   },
+#}
   openssl::certificate::x509 { $fqdn:
     commonname => $facts['networking']['fqdn'],
   }
