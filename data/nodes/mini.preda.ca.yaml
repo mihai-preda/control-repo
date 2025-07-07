@@ -3,7 +3,3 @@
 puppet::client_package: openvox-agent
 puppet::config::agent: 
   runinterval: 2h
-
-profile::hiera_test::ssl: true
-profile::hiera_test::backups_enabled: true
-profile::hiera_test::site_alias: mini.preda.ca
