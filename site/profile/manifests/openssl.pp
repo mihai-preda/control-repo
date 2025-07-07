@@ -22,7 +22,7 @@ class profile::openssl {
     ensure   => 'present',
     basedir  => "${ssl_dir}/private",
     pkey     => "${ssl_dir}/certs/${fqdn}.key",
-    cert     => "${ssl_dir}/certs/${fqdn}",
+    cert     => "${ssl_dir}/certs/${fqdn}.crt",
     in_pass  => '34polla0_5710]fer',
     out_pass => '1k0eop3l0-2jd]3hh7',
   }
