@@ -22,6 +22,10 @@ class profile::puppetserver {
     puppetdb_port           => 8081,
     manage_routes           => true,
   }
+  package { 'hiera-eyaml':
+    ensure   => 'installed',
+    provider => 'puppetserver_gem',
+  }
   class { 'hiera':
     hiera_version   => '5',
     hiera5_defaults => { 'datadir' => 'data', 'data_hash' => 'yaml_data' },
