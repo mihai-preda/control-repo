@@ -12,7 +12,7 @@ class profile::tomcat {
   $keystore_path = '/etc/pki/tls/certs'
   $fqdn = $facts['networking']['fqdn']
   $ssl_dir = '/etc/pki/tls'
-
+  $keystore_source = "${ssl_dir}/private/${fqdn}.p12"
   file { $keystore_path:
     ensure         => file,
     source         => $keystore_source,
