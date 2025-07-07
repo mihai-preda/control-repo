@@ -1,10 +1,5 @@
 # data/nodes/app-srv1.preda.ca.yaml
 ---
-classes:
-  - openssl
-openssl::certificates:
-  hostcert:
-    commonname: "%{facts['networking']['fqdn']}"
 
 profile::hiera_test::ssl: true
 profile::hiera_test::backups_enabled: true
