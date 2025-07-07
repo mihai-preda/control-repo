@@ -9,7 +9,7 @@ defaults:
     
 hierarchy:
   - name: "Nodes"
-    path: "nodes/%{::trusted.certname}.yaml"
+    path: "nodes/%{trusted.certname}.yaml"
   - name: "Operating System"
     path: "os/%{facts.os.family}.yaml"
   - name: "Common"
