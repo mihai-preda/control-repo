@@ -1,4 +1,4 @@
-# hiera prod env config
+# env layer hiera config
 ---
 version: 5
 defaults:
@@ -8,9 +8,9 @@ defaults:
     pkcs7_public_key: /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
     
 hierarchy:
-  - name: "Nodes"
+  - name: "Per-node data"
     path: "nodes/%{trusted.certname}.yaml"
-  - name: "Operating System"
+  - name: "Per-OS defaults"
     path: "os/%{facts.os.family}.yaml"
-  - name: "Common"
+  - name: "Common data"
     path: "common.yaml"

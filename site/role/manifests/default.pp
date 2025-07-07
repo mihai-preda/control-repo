@@ -4,4 +4,5 @@ class role::default {
   include profile::base
   include epel
   include profile::zabbix_agent
+  include profile::hiera_test
 }
