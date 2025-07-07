@@ -9,3 +9,6 @@ DNS is highly recommended. It makes things easier to connect like nodes to puppe
 or pp board to ppdb.
 ## Zabbix
 Use Postgresql instead of MySQL. It's smoother.
+## Openssl
+Use the puppet class profile
+The hiera example doesn't work. No matter what!
