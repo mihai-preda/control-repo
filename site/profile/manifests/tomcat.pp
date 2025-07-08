@@ -14,12 +14,12 @@ class profile::tomcat {
   $ssl_dir = '/etc/pki/tls'
   $keystore_source = "${ssl_dir}/private/${fqdn}.p12"
   file { $keystore_path:
-    ensure         => file,
-    source         => $keystore_source,
+    ensure   => file,
+    source   => $keystore_source,
     #owner          => $keystore_user,
-    mode           => '0400',
-    checksum       => 'md5',
-    checksum_value => $keystore_checksum,
+    mode     => '0400',
+    checksum => 'md5',
+    #checksum_value => $keystore_checksum,
   }
 
   -> tomcat::config::server::connector { "${tomcat_instance}-https":
