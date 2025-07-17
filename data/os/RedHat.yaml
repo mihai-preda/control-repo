@@ -13,7 +13,6 @@ accounts::user_list:
   mihai:
     comment: 'Mihai Preda'
     groups: [wheel, users]
-    ignore_password_if_empty: true
     sshkeys:
       - &mihai_sshkey "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4AaxouynKJqYufoNqj7l0K+bJFcFNWWZALpTtRnkKA mhai@preda.ca"
   bart:
