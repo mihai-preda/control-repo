@@ -16,6 +16,7 @@ class profile::openssl {
 #}
   openssl::certificate::x509 { $fqdn:
     commonname => $facts['networking']['fqdn'],
+    ca         => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
   }
   $ssl_dir = '/etc/pki/tls'
   openssl::export::pkcs12 { $fqdn:
