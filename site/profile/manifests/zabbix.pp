@@ -13,9 +13,9 @@ class profile::zabbix {
     apache_use_ssl     => true,
     database_host      => 'db.preda.ca',
     database_type      => 'postgresql',
-    apache_ssl_cert    => '/etc/pki/tls/certs/cert.pem',
-    apache_ssl_key     => '/etc/pki/tls/private/privatekey.pem',
-    apache_ssl_chain   => '/etc/pki/tls/certs/chain.pem',
+    apache_ssl_cert    => '/etc/pki/tls/certs/monit.preda.ca-cert.pem',
+    apache_ssl_key     => '/etc/pki/tls/private/monit.preda.ca-key.pem',
+    apache_ssl_chain   => '/etc/pki/tls/certs/monit.preda.ca-chain.pem',
   }
   class { 'apache::mod::ssl': }
   class { 'postgresql::client': }

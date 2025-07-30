@@ -29,8 +29,8 @@ class profile::puppetboard {
     vhost_name => 'web.preda.ca',
     port       => 443,
     ssl        => true,
-    ssl_cert   => '/etc/pki/tls/certs/cert.pem',
-    ssl_key    => '/etc/pki/tls/private/privatekey.pem',
-    ssl_chain  => '/etc/pki/tls/certs/chain.pem',
+    ssl_cert   => "${ssl_dir}/certs/${facts['networking']['fqdn']}-cert.pem",
+    ssl_key    => "${ssl_dir}/private/${facts['networking']['fqdn']}-key.pem",
+    ssl_chain  => "${ssl_dir}/certs/${facts['networking']['fqdn']}-chain.pem",
   }
 }
