@@ -24,9 +24,9 @@ class profile::tomcat {
   }
 
   -> tomcat::config::server::connector { 'default-https':
-    catalina_base         => $catalina_base,
-    port                  => $https_port,
-    protocol              => $http_version,
+    # catalina_base         => $catalina_base,
+    # port                  => $https_port,
+    # protocol              => $http_version,
     purge_connectors      => true,
     cert_key_file         => "${ssl_dir}/certs/${fqdn}.key",
     cert_file             => "${ssl_dir}/certs/${fqdn}.pem",
