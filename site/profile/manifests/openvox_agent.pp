@@ -12,5 +12,5 @@ class profile::openvox_agent {
     ensure => 'present',
     source => "https://yum.voxpupuli.org/openvox${release}-release-${os_name}-${facts['os']['release']['major']}.noarch.rpm",
   }
-  class { 'puppet': runinterval => '2h', runmode => 'systemd.timer', agent_server_hostname => 'puppet.preda.ca' }
+  class { 'puppet': runinterval => 3600 , runmode => 'service', agent_server_hostname => 'puppet.preda.ca' }
 }
