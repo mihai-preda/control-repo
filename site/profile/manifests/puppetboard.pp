@@ -13,6 +13,24 @@ class profile::puppetboard {
 # puppetdb run on separate hosts. SEE ->README.md!!!
   $ssl_dir = '/etc/pki/tls'
   $puppetboard_certname = 'web.preda.ca'
+  file { "${ssl_dir}/private/${facts['networking']['fqdn']}.pem":
+    ensure => file,
+    mode   => '0644',
+    group  => apache,
+    source => "/etc/puppetlabs/puppet/ssl/private_keys/${facts['networking']['fqdn']}.pem",
+  }
+  file { "${ssl_dir}/certs/${facts['networking']['fqdn']}.pem":
+    ensure => file,
+    mode   => '0644',
+    group  => apache,
+    source => "/etc/puppetlabs/puppet/ssl/certs/${facts['networking']['fqdn']}.pem",
+  }
+  file { "${ssl_dir}/certs/ca.pem":
+    ensure => file,
+    mode   => '0644',
+    source => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
+  }
+
   class { 'puppetboard':
     python_version      => '3.9',
     secret_key          => 'guardians0-=1',
