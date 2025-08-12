@@ -13,6 +13,7 @@ accounts::user_list:
   mihai:
     comment: 'Mihai Preda'
     groups: [wheel, users]
+    password: '$6$fp53.nNHDBRu1FBQ$uJyJLhIbRxzqevSUZxDFEzXs2ZLQEyGdXX7mtLG1t10YMXVJYPdsDD0kV.Rbv1EIjpxKNEy8XIxBXBrw3sqWq1'
     sshkeys:
       - &mihai_sshkey "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4AaxouynKJqYufoNqj7l0K+bJFcFNWWZALpTtRnkKA mhai@preda.ca"
   bart:
