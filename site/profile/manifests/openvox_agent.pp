@@ -1,4 +1,5 @@
-# open_vox
+# Install openvox agent using the foreman puppet module
+# use hiera per node or per os family
 class profile::openvox_agent {
   include yum
   $release=8
