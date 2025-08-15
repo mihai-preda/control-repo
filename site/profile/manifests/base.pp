@@ -6,9 +6,6 @@ class profile::base {
   package { 'htop':
     ensure => 'present',
   }
-  package { 'mkpasswd':
-    ensure => 'present',
-  }
   notify { 'hello from the puppet server':
   }
 
