@@ -1,6 +1,6 @@
 # IIS profile
 class profile::iis {
-  windowsfeature { 'Web-WebServer':
+  windowsfeature { 'Telnet-Client	':
     ensure                 => present,
     installmanagementtools => true,
     installsubfeatures     => true,
