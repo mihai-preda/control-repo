@@ -1,4 +1,3 @@
-# resolver.pp (located in modules/profile/manifests)
 # resolver profile
 class profile::resolver (
   String $nameserver1 = '10.21.2.254',
