@@ -24,11 +24,12 @@ class profile::tomcat {
   }
 
   -> tomcat::config::server::connector { 'default-https':
-    purge_connectors      => true,
-    cert_key_file         => "${ssl_dir}/certs/${fqdn}.key",
-    cert_file             => "${ssl_dir}/certs/${fqdn}.pem",
-    cert_chain_file       => "${ssl_dir}/certs/ca.pem",
-    cert_type             => 'EC',
+    purge_connectors => true,
+    port             => '8443',
+    cert_key_file    => "${ssl_dir}/certs/${fqdn}.key",
+    cert_file        => "${ssl_dir}/certs/${fqdn}.pem",
+    cert_chain_file  => "${ssl_dir}/certs/ca.pem",
+    cert_type        => 'EC',
     # additional_attributes => {
     #   'SSLEnabled'          => bool2str($https_enabled),
     #   'maxThreads'          => $https_connector_max_threads,
