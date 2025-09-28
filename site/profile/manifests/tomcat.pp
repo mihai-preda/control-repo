@@ -12,12 +12,12 @@ class profile::tomcat {
   $fqdn = $facts['networking']['fqdn']
   $ssl_dir = '/etc/pki/tls'
   $keystore_path = "${ssl_dir}/private/${fqdn}.p12"
-  #$keystore_source = "${ssl_dir}/private/${fqdn}.p12"
+  $keystore_source = "${ssl_dir}/private/${fqdn}.p12"
   $keystore_pass = '1k0eop3l0-2jd]3hh7'
   $keystore_user = 'tomcat'
   file { $keystore_path:
     ensure   => file,
-    #source   => $keystore_source,
+    source   => $keystore_source,
     owner    => $keystore_user,
     mode     => '0400',
     checksum => 'md5',
@@ -29,7 +29,7 @@ class profile::tomcat {
     cert_key_file    => "${ssl_dir}/certs/${fqdn}.key",
     cert_file        => "${ssl_dir}/certs/${fqdn}.pem",
     cert_chain_file  => "${ssl_dir}/certs/ca.pem",
-    cert_type        => 'EC',
+    cert_type        => 'RSA',
     # additional_attributes => {
     #   'SSLEnabled'          => bool2str($https_enabled),
     #   'maxThreads'          => $https_connector_max_threads,
