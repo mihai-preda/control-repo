@@ -9,9 +9,9 @@ class profile::tomcat {
   package { 'java-17-openjdk-headless':
     ensure => 'present',
   }
+  $ssl_dir = '/etc/pki/tls'
   $keystore_path = "${ssl_dir}/certs/${fqdn}.p12"
   $fqdn = $facts['networking']['fqdn']
-  $ssl_dir = '/etc/pki/tls'
   $keystore_source = "${ssl_dir}/private/${fqdn}.p12"
   $keystore_pass = '1k0eop3l0-2jd]3hh7'
   $keystore_user = 'tomcat'
