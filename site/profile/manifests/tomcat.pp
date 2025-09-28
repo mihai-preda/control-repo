@@ -32,9 +32,9 @@ class profile::tomcat {
   -> tomcat::config::server::connector { 'default-https':
     purge_connectors      => true,
     port                  => '8443',
-    cert_key_file         => "${ssl_dir}/certs/${fqdn}.key",
-    cert_file             => "${ssl_dir}/certs/${fqdn}.pem",
-    cert_chain_file       => "${ssl_dir}/certs/ca.pem",
+    cert_key_file         => "${ssl_dir}/private/${fqdn}.key",
+    cert_file             => "${ssl_dir}/certs/${fqdn}.crt",
+    cert_chain_file       => "${ssl_dir}/certs/ca.crt",
     cert_type             => 'RSA',
     additional_attributes => {
       'SSLEnabled'   => bool2str($https_enabled),

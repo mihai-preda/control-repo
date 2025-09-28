@@ -9,7 +9,7 @@ node 'win-38njq8tg.preda.ca' { include role::telnet }
 node 'mini.preda.ca' { include role::sp1 }
 node 'app-srv1.preda.ca' { include role::app1 }
 
-# manifests/site.pp (or included manifest)
-$certs = lookup('node_openssl_x509', Hash, 'first', {})
+# # manifests/site.pp (or included manifest)
+# $certs = lookup('node_openssl_x509', Hash, 'first', {})
 
-create_resources('openssl::certificate::x509', $certs)
+# create_resources('openssl::certificate::x509', $certs)
