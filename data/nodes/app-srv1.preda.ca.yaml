@@ -11,6 +11,4 @@ openssl::certificates:
     country: CA
     state: British Columbia
     locality: Delta
-  othercert:
-    commonname: "app1.preda.ca"
-    owner: tomcat
+    

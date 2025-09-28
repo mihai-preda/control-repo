@@ -9,19 +9,19 @@ class profile::tomcat {
   package { 'java-17-openjdk-headless':
     ensure => 'present',
   }
-  $fqdn = $facts['networking']['fqdn']
-  $ssl_dir = '/etc/pki/tls'
-  $keystore_path = "${ssl_dir}/private/${fqdn}.p12"
-  $keystore_source = "${ssl_dir}/private/${fqdn}.p12"
-  $keystore_pass = '1k0eop3l0-2jd]3hh7'
-  $keystore_user = 'tomcat'
-  file { $keystore_path:
-    ensure   => file,
-    source   => $keystore_source,
-    owner    => $keystore_user,
-    mode     => '0400',
-    checksum => 'md5',
-  }
+  # $fqdn = $facts['networking']['fqdn']
+  # $ssl_dir = '/etc/pki/tls'
+  # $keystore_path = "${ssl_dir}/private/${fqdn}.p12"
+  # $keystore_source = "${ssl_dir}/private/${fqdn}.p12"
+  # $keystore_pass = '1k0eop3l0-2jd]3hh7'
+  # $keystore_user = 'tomcat'
+  # file { $keystore_path:
+  #   ensure   => file,
+  #   source   => $keystore_source,
+  #   owner    => $keystore_user,
+  #   mode     => '0400',
+  #   checksum => 'md5',
+  # }
 
   -> tomcat::config::server::connector { 'default-https':
     purge_connectors => true,
