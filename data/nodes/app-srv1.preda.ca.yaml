@@ -5,12 +5,18 @@ profile::hiera_test::ssl: true
 profile::hiera_test::backups_enabled: true
 profile::hiera_test::site_alias: app-srv1.preda.ca
 
-openssl::certificates:
+node_openssl_x509:
   hostcert:
     commonname: "%{facts['networking']['fqdn']}"
     country: CA
     state: British Columbia
     locality: Delta
+    days: 365
+    key_type: EC
+    provider: openssl
+    allow_self_signed: true
+    dest_private_key: '/etc/pki/tls/private/app-srv1.preda.ca.key'
+    dest_cert: '/etc/pki/tls/certs/app-srv1.preda.ca.crt'
 openssl::export::pkcs12:
   ensure: file
   basedir: '/etc/pki/tls/'
