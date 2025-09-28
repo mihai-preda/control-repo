@@ -11,6 +11,7 @@ class profile::ssc {
     state      => 'British Columbia',
     locality   => 'Delta',
     days       => 365,
+    ca         => '/etc/pki/tls/certs/ca.pem',
   }
   $fqdn = $facts['networking']['fqdn']
   $ssl_dir = '/etc/pki/tls'
