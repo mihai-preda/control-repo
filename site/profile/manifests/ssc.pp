@@ -13,13 +13,13 @@ class profile::ssc {
     locality   => 'Delta',
     days       => 365,
   }
-  openssl::export::pkcs12 { "${ssl_dir}/private/${fqdn}.p12":
-    ensure    => 'present',
-    basedir   => '/etc/pki/tls/',
-    pkey      => "${ssl_dir}/private/${fqdn}.key",
-    cert      => "${ssl_dir}/certs/${fqdn}.crt",
-    out_pass  => '1k0eop3l0-2jd]3hh7',
-    dynamic   => true,
-    resources => File["${ssl_dir}/private/${fqdn}.key","${ssl_dir}/certs/${fqdn}.crt"],
-  }
+  # openssl::export::pkcs12 { "${ssl_dir}/private/${fqdn}.p12":
+  #   ensure    => 'present',
+  #   basedir   => '/etc/pki/tls/',
+  #   pkey      => "${ssl_dir}/private/${fqdn}.key",
+  #   cert      => "${ssl_dir}/certs/${fqdn}.crt",
+  #   out_pass  => '1k0eop3l0-2jd]3hh7',
+  #   dynamic   => true,
+  #   resources => File["${ssl_dir}/private/${fqdn}.key","${ssl_dir}/certs/${fqdn}.crt"],
+  # }
 }
