@@ -6,7 +6,7 @@ class profile::ssc {
     package_ensure         => latest,
     ca_certificates_ensure => latest,
   }
-  openssl::certificate::x509 { "%['networking']['fqdn']":
+  openssl::certificate::x509 { "${ssl_dir}/certs/${fqdn}":
     commonname => $fqdn,
     country    => 'CA',
     state      => 'British Columbia',
@@ -17,7 +17,7 @@ class profile::ssc {
     ensure    => 'present',
     basedir   => '/etc/pki/tls/',
     pkey      => "${ssl_dir}/private/${fqdn}.key",
-    cert      => "${ssl_dir}/certs/${fqdn}.pem",
+    cert      => "${ssl_dir}/certs/${fqdn}.crt",
     out_pass  => '1k0eop3l0-2jd]3hh7',
     dynamic   => true,
     resources => File["${ssl_dir}/private/${fqdn}.key","${ssl_dir}/certs/${fqdn}.crt"],
