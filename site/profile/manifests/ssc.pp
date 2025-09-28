@@ -1,13 +1,11 @@
 # self-signed certificate
 class profile::ssc {
-  $fqdn = $facts['networking']['fqdn']
-  $ssl_dir = '/etc/pki/tls'
   class { 'openssl':
     package_ensure         => latest,
     ca_certificates_ensure => latest,
   }
-  openssl::certificate::x509 { "${ssl_dir}/certs/${fqdn}":
-    commonname => $fqdn,
+  openssl::certificate::x509 { $facts['networking']['fqdn']:
+    commonname => $facts['networking']['fqdn'],
     country    => 'CA',
     state      => 'British Columbia',
     locality   => 'Delta',
