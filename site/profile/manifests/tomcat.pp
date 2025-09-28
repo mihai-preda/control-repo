@@ -42,7 +42,7 @@ class profile::tomcat {
       'scheme'       => $https_connector_scheme,
       'secure'       => bool2str($https_connector_secure),
       'clientAuth'   => bool2str($https_connector_client_auth),
-      'sslProtocol'  => $https_connector_ssl_protocol,
+      #'sslProtocol'  => $https_connector_ssl_protocol,
       #'sslEnabledProtocols' => join($https_connector_ssl_protocols_enabled, ','),
       #'ciphers'             => join($ciphers_enabled, ','),
 
