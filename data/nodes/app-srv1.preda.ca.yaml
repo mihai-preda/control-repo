@@ -7,7 +7,7 @@ profile::hiera_test::site_alias: app-srv1.preda.ca
 
 node_openssl_x509:
   hostcert:
-    commonname: "%{facts['networking']['fqdn']}"
+    commonname: "%{facts.networking.fqdn}"
     country: CA
     state: British Columbia
     locality: Delta
@@ -15,13 +15,13 @@ node_openssl_x509:
     key_type: EC
     provider: openssl
     allow_self_signed: true
-    dest_private_key: "/etc/ssl/private/%{facts['networking']['fqdn']}.key"
-    dest_cert: "/etc/ssl/certs/%{facts['networking']['fqdn']}.crt"
+    dest_private_key: "/etc/ssl/private/%{facts.networking.fqdn}.key"
+    dest_cert: "/etc/ssl/certs/%{facts.networking.fqdn}.crt"
 openssl::export::pkcs12:
   ensure: file
   basedir: '/etc/pki/tls/'
-  pkey: "/etc/ssl/private/%{facts['networking']['fqdn']}.key"
-  cert: "/etc/ssl/certs/%{facts['networking']['fqdn']}.crt"
+  pkey: "/etc/ssl/private/%{facts.networking.fqdn}.key"
+  cert: "/etc/ssl/certs/%{facts.networking.fqdn}.crt"
   out_pass: '1k0eop3l0-2jd]3hh7'
   dynamic: true
     
