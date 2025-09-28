@@ -17,7 +17,7 @@ class profile::tomcat {
   $keystore_user = 'tomcat'
   file { $keystore_path:
     ensure   => file,
-    source   => $keystore_source,
+    #source   => $keystore_source,
     owner    => $keystore_user,
     mode     => '0400',
     checksum => 'md5',
