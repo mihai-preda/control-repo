@@ -15,13 +15,13 @@ node_openssl_x509:
     key_type: EC
     provider: openssl
     allow_self_signed: true
-    dest_private_key: '/etc/pki/tls/private/app-srv1.preda.ca.key'
-    dest_cert: '/etc/pki/tls/certs/app-srv1.preda.ca.crt'
+    dest_private_key: "/etc/ssl/private/%{facts['networking']['fqdn']}.key"
+    dest_cert: "/etc/ssl/certs/%{facts['networking']['fqdn']}.crt"
 openssl::export::pkcs12:
   ensure: file
   basedir: '/etc/pki/tls/'
-  pkey: '/etc/pki/tls/private/app-srv1.preda.ca.key'
-  cert: '/etc/pki/tls/certs/app-srv1.preda.ca.crt'
+  pkey: "/etc/ssl/private/%{facts['networking']['fqdn']}.key"
+  cert: "/etc/ssl/certs/%{facts['networking']['fqdn']}.crt"
   out_pass: '1k0eop3l0-2jd]3hh7'
   dynamic: true
     
