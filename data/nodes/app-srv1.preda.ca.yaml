@@ -11,4 +11,11 @@ openssl::certificates:
     country: CA
     state: British Columbia
     locality: Delta
+openssl::export::pkcs12:
+  ensure: file
+  basedir: '/etc/pki/tls/'
+  pkey: '/etc/pki/tls/private/app-srv1.preda.ca.key'
+  cert: '/etc/pki/tls/certs/app-srv1.preda.ca.crt'
+  out_pass: '1k0eop3l0-2jd]3hh7'
+  dynamic: true
     
