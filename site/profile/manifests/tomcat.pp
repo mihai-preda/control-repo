@@ -11,8 +11,8 @@ class profile::tomcat {
   }
   $fqdn = $facts['networking']['fqdn']
   $ssl_dir = '/etc/pki/tls'
-  $keystore_source = "${ssl_dir}/private/${fqdn}.p12"
-  $keystore_path = "${ssl_dir}/private/${fqdn}.p12"
+  $keystore_source = "${ssl_dir}/certs/${fqdn}.p12"
+  $keystore_path = "${ssl_dir}/certs/${fqdn}.p12"
   $keystore_pass = '1k0eop3l0-2jd]3hh7'
   $keystore_user = 'tomcat'
   $https_enabled = true
@@ -32,7 +32,7 @@ class profile::tomcat {
   -> tomcat::config::server::connector { 'default-https':
     purge_connectors      => true,
     port                  => '8443',
-    cert_key_file         => "${ssl_dir}/private/${fqdn}.key",
+    cert_key_file         => "${ssl_dir}/certs/${fqdn}.key",
     cert_file             => "${ssl_dir}/certs/${fqdn}.crt",
     cert_chain_file       => "${ssl_dir}/certs/ca.crt",
     cert_type             => 'RSA',

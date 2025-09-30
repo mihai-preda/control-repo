@@ -16,13 +16,13 @@ class profile::ssc {
   $fqdn = $facts['networking']['fqdn']
   $ssl_dir = '/etc/pki/tls'
   openssl::export::pkcs12 { $fqdn:
-    ensure    => 'present',
-    basedir   => "${ssl_dir}/certs/",
-    pkey      => "${ssl_dir}/certs/${fqdn}.key",
-    cert      => "${ssl_dir}/certs/${fqdn}.crt",
-    out_pass  => '1k0eop3l0-2jd]3hh7',
-    dynamic   => true,
-    resources => File['/etc/pki/tls/certs/app-srv1.preda.ca.key','/etc/pki/tls/certs/app-srv1.preda.ca.crt'],
-    #resources => File["${ssl_dir}/certs/${fqdn}.key","${ssl_dir}/certs/${fqdn}.crt"],
+    ensure   => 'present',
+    basedir  => "${ssl_dir}/certs/",
+    pkey     => "${ssl_dir}/certs/${fqdn}.key",
+    cert     => "${ssl_dir}/certs/${fqdn}.crt",
+    out_pass => '1k0eop3l0-2jd]3hh7',
+    # the dynamic portion fails because the file resources are not declared in the catalogue
+    # dynamic   => true,
+    # resources => File["${ssl_dir}/certs/${fqdn}.key","${ssl_dir}/certs/${fqdn}.crt"],
   }
 }
