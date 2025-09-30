@@ -15,7 +15,7 @@ class profile::ssc {
   }
   $fqdn = $facts['networking']['fqdn']
   $ssl_dir = '/etc/pki/tls'
-  openssl::export::pkcs12 { "${ssl_dir}/certs/${fqdn}.p12":
+  openssl::export::pkcs12 { "${fqdn}.p12":
     ensure   => 'present',
     basedir  => "${ssl_dir}/certs/",
     pkey     => "${ssl_dir}/certs/${fqdn}.key",
