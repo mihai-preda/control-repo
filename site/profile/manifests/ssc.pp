@@ -22,6 +22,7 @@ class profile::ssc {
     cert      => "${ssl_dir}/certs/${fqdn}.crt",
     out_pass  => '1k0eop3l0-2jd]3hh7',
     dynamic   => true,
-    resources => File["${ssl_dir}/certs/${fqdn}.key","${ssl_dir}/certs/${fqdn}.crt"],
+    resources => File['/etc/pki/tls/certs/app-srv1.preda.ca.key','/etc/pki/tls/certs/app-srv1.preda.ca.crt'],
+    #resources => File["${ssl_dir}/certs/${fqdn}.key","${ssl_dir}/certs/${fqdn}.crt"],
   }
 }
