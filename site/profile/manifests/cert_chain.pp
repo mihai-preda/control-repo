@@ -34,13 +34,13 @@ class profile::cert_chain (
 
   # CA certificate
   openssl::certificate::x509 { "${ca_name}_cert":
-    ensure               => present,
-    private_key_password => $ca_key_password,
-    days                 => $ca_days,
-    key_type             => 'ec',
-    allow_self_signed    => true,
-    ca                   => true,
-    commonname           => $ca_name,
+    ensure            => present,
+    password          => '' ,
+    days              => $ca_days,
+    key_type          => 'ec',
+    allow_self_signed => true,
+    ca                => true,
+    commonname        => $ca_name,
   }
 
   # Node certificate signed by CA
