@@ -34,13 +34,10 @@ class profile::cert_chain (
 
   # CA certificate
   openssl::certificate::x509 { "${ca_name}_cert":
-    ensure            => present,
-    password          => '' ,
-    days              => $ca_days,
-    key_type          => 'ec',
-    allow_self_signed => true,
-    ca                => true,
-    commonname        => $ca_name,
+    ensure     => present,
+    days       => $ca_days,
+    ca         => true,
+    commonname => $ca_name,
   }
 
   # Node certificate signed by CA
@@ -49,7 +46,6 @@ class profile::cert_chain (
   openssl::certificate::x509 { "node_cert_${fqdn}":
     ensure          => present,
     days            => $node_days,
-    key_type        => 'ec',
     ca              => "${ca_dir}/${ca_name}.crt",
     ca_key          => "${ca_dir}/${ca_name}.key",
     ca_key_password => $ca_key_password,
