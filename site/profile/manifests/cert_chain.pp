@@ -55,6 +55,6 @@ class profile::cert_chain (
   exec { "concat_cert_chain_${fqdn}":
     command => "cat ${node_cert_path} ${ca_dir}/${ca_name}.crt > ${chain_path}",
     creates => $chain_path,
-    require => Openssl::Certificate::X509["node_cert_${fqdn}"],
+    require => Openssl::Certificate::X509[$fqdn],
   }
 }
