@@ -18,15 +18,10 @@ class profile::cert_chain (
   $node_cert_path = "/etc/ssl/certs/${fqdn}.crt"
   $chain_path     = "/etc/ssl/certs/${fqdn}_fullchain.crt"
 
-  # EC parameters
+  # EC curve
   $curve = 'prime256v1'
 
-  # CA key
-  openssl::ecparams { "${ca_name}_params":
-    ensure => present,
-    curve  => $curve,
-  }
-
+  # CA private key
   openssl::privatekey { "${ca_name}_key":
     ensure   => present,
     password => $ca_key_password,
