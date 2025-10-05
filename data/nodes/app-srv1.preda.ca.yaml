@@ -5,7 +5,7 @@ profile::hiera_test::ssl: true
 profile::hiera_test::backups_enabled: true
 profile::hiera_test::site_alias: app-srv1.preda.ca
 
-openssl::certificates:
+openssl::certificates::x509:
   app-srv1.preda.ca:
     commonname: "%{facts['networking']['fqdn']}"
     country: CA
