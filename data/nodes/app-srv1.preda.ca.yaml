@@ -4,4 +4,13 @@
 profile::hiera_test::ssl: true
 profile::hiera_test::backups_enabled: true
 profile::hiera_test::site_alias: app-srv1.preda.ca
-    
+
+openssl::certificates:
+  app-srv1.preda.ca:
+    commonname: "%{facts['networking']['fqdn']}"
+    country: CA
+    password: 'ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAMmMrNzbBSKqfqFsl6c8yFS0oB8Wl53NnHRYcY2X7Hd0SF1f1opvHaCDBQmUhPi3w9VA06WQF3if94zeHgqVEIdp4EOotS5lmix+NHA2udWegKeOP1N/m+uO4JByCEFIe8j3noIji+dqBji1XyNyZdYFtqyGbMy3mkSlqZspwltisxEfk5Zdq+iAE9KW3cM2INakei7e8qbDxigR0+wV/VbCII3/f3uw4SLdIxwqo7jbLc3AUh9DEi0A97N0+iVFPytO/sdupUzN1g99rsAy03skiclvk3ds/unm5vjNfie5SlThifxJQPSlnfI40Qgn2hRoqvIswyaJ+chba6NoxTDA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDG9ylw7lP2Wy1NVR27seGogBCc5zI4ahpcds9tjAUa1QO7]'
+    base_dir: /etc/ssl
+    locality: Delta
+    state: British Columbia
+      
