@@ -4,30 +4,32 @@
 # @param ca_key_password - password to encrypt the CA key
 # @param ca_days - days the CA certificate will be valid for
 # @param node_days - the number of days the node certificate will be valid for
-# @param extra_sans - additional subject alternative names
+# @param req_ext - additional subject alternative names
 class profile::cert_chain (
   String $ca_name         = 'local_ca',
   String $ca_dir          = '/etc/ssl/local_ca',
   String $ca_key_password = 'supersecretpassword',  # Use Hiera eyaml or secrets backend in production
   Integer $ca_days        = 3650,
   Integer $node_days      = 365,
-  Array[String] $extra_sans = [],
+  Array[String] $req_ext = [],
 ) {
   $fqdn = $facts['networking']['fqdn']
   $node_key_path  = "/etc/ssl/private/${fqdn}.key"
   $node_cert_path = "/etc/ssl/certs/${fqdn}.crt"
   $chain_path     = "/etc/ssl/certs/${fqdn}_fullchain.crt"
 
-  # EC curve
-  $curve = 'prime256v1'
-
   # CA private key
-  openssl::privatekey { "${ca_name}_key":
-    ensure   => present,
-    password => $ca_key_password,
-    key_type => 'ec',
-    ec_curve => $curve,
-    path     => "${ca_dir}/${ca_name}.key",
+  ssl_key { "${ca_name}_key":
+    ensure         => present,
+    password       => $ca_key_password,
+    authentication => 'ec',
+    path           => "${ca_dir}/${ca_name}.key",
+  }
+
+  # Node private key
+  ssl_key { "node_key_${fqdn}":
+    ensure         => present,
+    authentication => 'ec',
   }
 
   # CA certificate
@@ -38,7 +40,6 @@ class profile::cert_chain (
     private_key_password => $ca_key_password,
     days                 => $ca_days,
     key_type             => 'ec',
-    ec_curve             => $curve,
     allow_self_signed    => true,
     ca                   => true,
     commonname           => $ca_name,
@@ -53,11 +54,10 @@ class profile::cert_chain (
     dest_private_key => $node_key_path,
     days             => $node_days,
     key_type         => 'ec',
-    ec_curve         => $curve,
-    ca_cert          => "${ca_dir}/${ca_name}.crt",
+    ca               => "${ca_dir}/${ca_name}.crt",
     ca_key           => "${ca_dir}/${ca_name}.key",
     ca_key_password  => $ca_key_password,
-    subject_alt_name => $san_list,
+    req_ext          => '' ,
     commonname       => $fqdn,
   }
 
