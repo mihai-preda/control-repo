@@ -1,6 +1,6 @@
 # app1 role
 class role::app1 {
+  include role::default
   contain openssl::certificates
   include profile::tomcat
-  include role::default
 }

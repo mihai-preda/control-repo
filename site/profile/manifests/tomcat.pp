@@ -32,22 +32,22 @@ class profile::tomcat {
   -> tomcat::config::server::connector { 'default-https':
     purge_connectors      => true,
     port                  => '8443',
-    cert_key_file         => "${ssl_dir}/certs/${fqdn}.key",
-    cert_file             => "${ssl_dir}/certs/${fqdn}.crt",
-    cert_chain_file       => "${ssl_dir}/certs/ca.crt",
-    cert_type             => 'RSA',
-    additional_attributes => {
-      'SSLEnabled'   => bool2str($https_enabled),
-      'maxThreads'   => $https_connector_max_threads,
-      'scheme'       => $https_connector_scheme,
-      'secure'       => bool2str($https_connector_secure),
-      'clientAuth'   => bool2str($https_connector_client_auth),
-      #'sslProtocol'  => $https_connector_ssl_protocol,
-      #'sslEnabledProtocols' => join($https_connector_ssl_protocols_enabled, ','),
-      #'ciphers'             => join($ciphers_enabled, ','),
+    # cert_key_file         => "${ssl_dir}/certs/${fqdn}.key",
+    # cert_file             => "${ssl_dir}/certs/${fqdn}.crt",
+    # cert_chain_file       => "${ssl_dir}/certs/ca.crt",
+    # cert_type             => 'RSA',
+    # additional_attributes => {
+    #   'SSLEnabled'   => bool2str($https_enabled),
+    #   'maxThreads'   => $https_connector_max_threads,
+    #   'scheme'       => $https_connector_scheme,
+    #   'secure'       => bool2str($https_connector_secure),
+    #   'clientAuth'   => bool2str($https_connector_client_auth),
+    #   #'sslProtocol'  => $https_connector_ssl_protocol,
+    #   #'sslEnabledProtocols' => join($https_connector_ssl_protocols_enabled, ','),
+    #   #'ciphers'             => join($ciphers_enabled, ','),
 
-      'keystorePass' => $keystore_pass.unwrap,
-      'keystoreFile' => $keystore_path,
-    },
+    #   'keystorePass' => $keystore_pass.unwrap,
+    #   'keystoreFile' => $keystore_path,
+    # },
   }
 }
