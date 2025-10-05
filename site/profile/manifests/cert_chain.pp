@@ -42,12 +42,12 @@ class profile::cert_chain (
   # Node certificate signed by CA
   #$san_list = ["DNS:${fqdn}"] + $req_ext
 
-  openssl::certificate::x509 { "node_cert_${fqdn}":
+  openssl::certificate::x509 { $fqdn :
     ensure          => present,
     days            => $node_days,
     ca              => "${ca_dir}/${ca_name}.crt",
-    ca_key          => "${ca_dir}/${ca_name}.key",
-    ca_key_password => $ca_key_password,
+    #ca_key          => "${ca_dir}/${ca_name}.key",
+    #ca_key_password => $ca_key_password,
     commonname      => $fqdn,
   }
 
