@@ -36,7 +36,6 @@ class profile::cert_chain (
   openssl::certificate::x509 { "${ca_name}_cert":
     ensure     => present,
     days       => $ca_days,
-    ca         => true,
     commonname => $ca_name,
   }
 
