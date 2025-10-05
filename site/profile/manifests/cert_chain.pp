@@ -18,19 +18,19 @@ class profile::cert_chain (
   $node_cert_path = "/etc/ssl/certs/${fqdn}.crt"
   $chain_path     = "/etc/ssl/certs/${fqdn}_fullchain.crt"
 
-  # CA private key
-  ssl_key { "${ca_name}_key":
-    ensure         => present,
-    password       => $ca_key_password,
-    authentication => 'ec',
-    path           => "${ca_dir}/${ca_name}.key",
-  }
+  # # CA private key
+  # ssl_key { "${ca_name}_key":
+  #   ensure         => present,
+  #   password       => $ca_key_password,
+  #   authentication => 'ec',
+  #   path           => "${ca_dir}/${ca_name}.key",
+  # }
 
-  # Node private key
-  ssl_key { "node_key_${fqdn}":
-    ensure         => present,
-    authentication => 'ec',
-  }
+  # # Node private key
+  # ssl_key { "node_key_${fqdn}":
+  #   ensure         => present,
+  #   authentication => 'ec',
+  # }
 
   # CA certificate
   openssl::certificate::x509 { "${ca_name}_cert":
