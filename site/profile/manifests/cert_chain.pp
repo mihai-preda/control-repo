@@ -8,7 +8,7 @@
 class profile::cert_chain (
   String $ca_name         = 'local_ca',
   String $ca_dir          = '/etc/ssl/local_ca',
-  String $ca_key_password = 'supersecretpassword',  # Use Hiera eyaml or secrets backend in production
+  String $ca_key_password = undef,  # Use Hiera eyaml or secrets backend in production
   Integer $ca_days        = 3650,
   Integer $node_days      = 365,
   Array[String] $req_ext = [],
@@ -35,8 +35,6 @@ class profile::cert_chain (
   # CA certificate
   openssl::certificate::x509 { "${ca_name}_cert":
     ensure               => present,
-    dest_cert            => "${ca_dir}/${ca_name}.crt",
-    dest_private_key     => "${ca_dir}/${ca_name}.key",
     private_key_password => $ca_key_password,
     days                 => $ca_days,
     key_type             => 'ec',
@@ -46,19 +44,16 @@ class profile::cert_chain (
   }
 
   # Node certificate signed by CA
-  $san_list = ["DNS:${fqdn}"] + $extra_sans
+  #$san_list = ["DNS:${fqdn}"] + $req_ext
 
   openssl::certificate::x509 { "node_cert_${fqdn}":
-    ensure           => present,
-    dest_cert        => $node_cert_path,
-    dest_private_key => $node_key_path,
-    days             => $node_days,
-    key_type         => 'ec',
-    ca               => "${ca_dir}/${ca_name}.crt",
-    ca_key           => "${ca_dir}/${ca_name}.key",
-    ca_key_password  => $ca_key_password,
-    req_ext          => '' ,
-    commonname       => $fqdn,
+    ensure          => present,
+    days            => $node_days,
+    key_type        => 'ec',
+    ca              => "${ca_dir}/${ca_name}.crt",
+    ca_key          => "${ca_dir}/${ca_name}.key",
+    ca_key_password => $ca_key_password,
+    commonname      => $fqdn,
   }
 
   # Optional: concatenate full chain
