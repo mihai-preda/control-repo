@@ -6,6 +6,9 @@ class profile::base {
   package { 'htop':
     ensure => 'present',
   }
+  package { 'iptables-nft-services':
+    ensure => 'present',
+  }
   notify { 'hello from the puppet server':
   }
 
