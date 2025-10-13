@@ -22,7 +22,7 @@ class profile::tomcat {
     war_source    => '/opt/tomcat/webapps/docs/appdev/sample/sample.war',
   }
   firewall { '101 allow http and https access':
-    dport  => [8081, 8080, 8443],
+    dport  => [8081, 8443],
     proto  => 'tcp',
     jump   => 'accept',
     source => '10.21.2.0/24',
