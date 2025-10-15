@@ -29,3 +29,4 @@ class profile::base {
       jump  => 'accept',
     }
   }
+}
