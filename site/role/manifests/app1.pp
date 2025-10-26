@@ -4,4 +4,5 @@ class role::app1 {
   contain openssl::certificates
   include profile::ssc
   include profile::tomcat
+  include profile::firewalld
 }
