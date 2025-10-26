@@ -8,6 +8,7 @@ profile::hiera_test::site_alias: app-srv1.preda.ca
 firewalld::zones:
   public:
     ensure: present
+    targe: default
     
 firewalld::services:
   'Allow DHCPS, SSH, and Zabbix from the public zone':
