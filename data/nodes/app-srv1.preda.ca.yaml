@@ -8,11 +8,7 @@ profile::hiera_test::site_alias: app-srv1.preda.ca
 firewalld::zones:
   public:
     ensure: present
-    target: '%%DEFAULT%%'
-    # purge_rich_rules: true
-    # purge_services: true
-    # purge_ports: true
-
+    
 firewalld::services:
   'Allow DHCPS, SSH, and Zabbix from the public zone':
     ensure: present
