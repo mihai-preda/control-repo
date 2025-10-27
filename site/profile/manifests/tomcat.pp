@@ -26,4 +26,5 @@ class profile::tomcat {
     proto => 'tcp',
     jump  => 'accept',
   }
+  class { 'firewalld': }
 }
