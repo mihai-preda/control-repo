@@ -6,6 +6,9 @@ class profile::base {
   package { 'htop':
     ensure => 'present',
   }
+  package { 'rsync':
+    ensure => 'present',
+  }
   if $facts['os']['distro']['id'] == 'Ol' {
     package { 'iptables-nft-services':
       ensure => 'present',
