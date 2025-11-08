@@ -1,0 +1,12 @@
+# puppet master
+---
+firewalld::custom_services:
+  puppet:
+    short: 'puppet'
+    description: 'Puppet Client access Puppet Server'
+    ports:
+      - port: 8140
+        protocol: 'tcp'
+    module: 'nf_conntrack_netbios_ns'
+    ipv4_destination: '127.0.0.1'
+    ipv6_destination: '::1'
