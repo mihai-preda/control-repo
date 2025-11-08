@@ -9,35 +9,34 @@ class profile::base {
   package { 'rsync':
     ensure => 'present',
   }
-  if $facts['os']['distro']['id'] == 'Ol' {
-    package { 'iptables-nft-services':
-      ensure => 'present',
-    }
-  } else {
-    # Code to execute for any other OS family
-    notify { "Unsupported OS: ${facts['os']['distro']['id']}":
-      loglevel => warning,
-    }
-    notify { 'hello from the puppet server':
-    }
-    file { 'wheel':
-      owner   => root,
-      group   => root,
-      mode    => '0440',
-      path    => '/etc/sudoers.d/wheel',
-      content => '%wheel ALL=(ALL) NOPASSWD: ALL',
-    }
-    firewall { '000 accept all icmp requests':
-      proto => 'icmp',
-      jump  => 'accept',
-    }
+  # if $facts['os']['distro']['id'] == 'Ol' {
+  #   package { 'iptables-nft-services':
+  #     ensure => 'present',
+  #   }
+  # } else {
+  #   # Code to execute for any other OS family
+  #   notify { "Unsupported OS: ${facts['os']['distro']['id']}":
+  #     loglevel => warning,
+  #   }
+  notify { 'hello from the puppet server':
   }
-  if $facts['is_virtual'] == false {
-    package { 'pciutils':
-      ensure => 'present',
-    }
-    package { 'usbutils':
-      ensure => 'present',
-    }
+  file { 'wheel':
+    owner   => root,
+    group   => root,
+    mode    => '0440',
+    path    => '/etc/sudoers.d/wheel',
+    content => '%wheel ALL=(ALL) NOPASSWD: ALL',
+  }
+  firewall { '000 accept all icmp requests':
+    proto => 'icmp',
+    jump  => 'accept',
+  }
+}
+if $facts['is_virtual'] == false {
+  package { 'pciutils':
+    ensure => 'present',
+  }
+  package { 'usbutils':
+    ensure => 'present',
   }
 }
