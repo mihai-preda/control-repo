@@ -1,7 +1,5 @@
 # data/nodes/app-srv1.preda.ca.yaml
 ---
-classes:
-  - firewalld
 
 profile::hiera_test::ssl: true
 profile::hiera_test::backups_enabled: true
