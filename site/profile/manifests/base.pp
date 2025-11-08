@@ -31,12 +31,12 @@ class profile::base {
     proto => 'icmp',
     jump  => 'accept',
   }
-}
-if $facts['is_virtual'] == false {
-  package { 'pciutils':
-    ensure => 'present',
-  }
-  package { 'usbutils':
-    ensure => 'present',
+  if $facts['is_virtual'] == false {
+    package { 'pciutils':
+      ensure => 'present',
+    }
+    package { 'usbutils':
+      ensure => 'present',
+    }
   }
 }
