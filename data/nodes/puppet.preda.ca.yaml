@@ -7,6 +7,3 @@ firewalld::custom_services:
     ports:
       - port: 8140
         protocol: 'tcp'
-    module: 'nf_conntrack_netbios_ns'
-    ipv4_destination: '127.0.0.1'
-    ipv6_destination: '::1'
