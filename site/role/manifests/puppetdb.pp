@@ -1,10 +1,9 @@
 # role db
 class role::puppetdb {
-  include profile::base
+  include profile::default
   include profile::puppet_agent
   include profile::puppetdb
   include profile::zabbixdb
   include profile::resolver
-  include accounts
-  include profile::zabbix_agent
+  include epel
 }
