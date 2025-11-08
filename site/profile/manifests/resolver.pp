@@ -1,4 +1,8 @@
 # resolver profile
+# @param nameserver1 = local dns server
+# @param nameserver2 = public dns server, usually quad9 or cloudflare's quad 1
+# @param domain = local domain name
+# @param search = domain to search
 class profile::resolver (
   String $nameserver1 = '10.21.2.254',
   String $nameserver2 = '9.9.9.9',

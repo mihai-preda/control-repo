@@ -9,15 +9,6 @@ class profile::base {
   package { 'rsync':
     ensure => 'present',
   }
-  # if $facts['os']['distro']['id'] == 'Ol' {
-  #   package { 'iptables-nft-services':
-  #     ensure => 'present',
-  #   }
-  # } else {
-  #   # Code to execute for any other OS family
-  #   notify { "Unsupported OS: ${facts['os']['distro']['id']}":
-  #     loglevel => warning,
-  #   }
   notify { 'hello from the puppet server':
   }
   file { 'wheel':
