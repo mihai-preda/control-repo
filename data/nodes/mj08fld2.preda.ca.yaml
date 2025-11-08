@@ -1,0 +1,32 @@
+# data/data/nodes/mj08fld2.preda.ca.yaml
+---
+
+profile::hiera_test::ssl: true
+profile::hiera_test::backups_enabled: true
+profile::hiera_test::site_alias: app-srv1.preda.ca
+
+firewalld::default_zone: 'public'
+firewalld::service_ensure: 'running'
+
+firewalld::zones:
+  public:
+    ensure: present
+    target: default
+    
+firewalld::services:
+  'Allow DHCPS, SSH, and Zabbix from the public zone':
+    ensure: present
+    service: ssh
+    zone: public
+  dhcp:
+    ensure: absent
+    service: dhcp
+    zone: public
+  dhcpv6-client:
+    ensure: present
+    service: dhcpv6-client
+    zone: public
+  zabbix-agent:
+    ensure: present
+    service: zabbix-agent
+    zone: public  
