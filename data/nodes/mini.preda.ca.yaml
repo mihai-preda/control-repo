@@ -15,7 +15,7 @@ firewalld::services:
     service: ssh
     zone: public
   dhcp:
-    ensure: absent
+    ensure: present
     service: dhcp
     zone: public
   dhcpv6-client:
