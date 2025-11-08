@@ -51,4 +51,9 @@ class profile::puppetboard {
     ssl_key    => "${ssl_dir}/private/${facts['networking']['fqdn']}-key.pem",
     ssl_chain  => "${ssl_dir}/certs/${facts['networking']['fqdn']}-chain.pem",
   }
+  firewalld_service { 'Allow SSH from the external zone':
+    ensure  => 'present',
+    service => ['ssh', 'http', 'https', 'zabbix-agent'],
+    zone    => 'public',
+  }
 }

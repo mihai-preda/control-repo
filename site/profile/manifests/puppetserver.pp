@@ -37,4 +37,18 @@ class profile::puppetserver {
       { 'name' => 'Default yaml file', 'path' => 'common.yaml' },
     ],
   }
+  firewalld_custom_service { 'puppet':
+    short       => 'puppet',
+    description => 'Puppet Client access Puppet Server',
+    ports       => [
+      {
+        'port'     => '8140',
+        'protocol' => 'tcp',
+      },
+      {
+        'port'     => '8140',
+        'protocol' => 'udp',
+      },
+    ],
+  }
 }
