@@ -1,5 +1,7 @@
 # mac mini server
 ---
+classes:
+  - firewalld
 
 firewalld::default_zone: 'public'
 firewalld::service_ensure: 'running'
