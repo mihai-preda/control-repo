@@ -1,7 +1,5 @@
 # mac mini server
 ---
-classes:
-  - firewalld
 
 firewalld::default_zone: 'public'
 firewalld::service_ensure: 'running'
@@ -27,8 +25,4 @@ firewalld::services:
   zabbix-agent:
     ensure: present
     service: zabbix-agent
-    zone: public
-  puppetmaster:
-    ensure: present
-    service: puppetmaster
     zone: public
