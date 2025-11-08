@@ -26,3 +26,7 @@ firewalld::services:
     ensure: present
     service: zabbix-agent
     zone: public
+  cockpit:
+    ensure: absent
+    service: cockpit
+    zone: public  

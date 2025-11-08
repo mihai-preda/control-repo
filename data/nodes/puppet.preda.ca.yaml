@@ -29,3 +29,7 @@ firewalld::services:
     ensure: present
     service: puppetmaster
     zone: public
+  cockpit:
+    ensure: absent
+    service: cockpit
+    zone: public    
