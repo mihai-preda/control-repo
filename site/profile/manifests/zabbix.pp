@@ -26,16 +26,16 @@ class profile::zabbix {
     database_type     => 'postgresql',
     database_password => 'Burninator@1',
   }
-  firewalld_port { '10050/tcp':
-    ensure   => present,
-    zone     => 'public',
-    port     => 10050,
-    protocol => 'tcp',
-  }
-  firewalld_port { '10051/tcp':
-    ensure   => present,
-    zone     => 'public',
-    port     => 10051,
-    protocol => 'tcp',
-  }
+  # firewalld_port { '10050/tcp':
+  #   ensure   => present,
+  #   zone     => 'public',
+  #   port     => 10050,
+  #   protocol => 'tcp',
+  # }
+  # firewalld_port { '10051/tcp':
+  #   ensure   => present,
+  #   zone     => 'public',
+  #   port     => 10051,
+  #   protocol => 'tcp',
+  # }
 }
