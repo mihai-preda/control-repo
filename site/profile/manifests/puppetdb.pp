@@ -10,16 +10,16 @@ class profile::puppetdb {
     node_purge_ttl          => '0s',
   }
   exec { '/opt/puppetlabs/bin/puppetdb ssl-setup -f': }
-  firewalld_port { '8080/tcp':
-    ensure   => present,
-    zone     => 'public',
-    port     => 8080,
-    protocol => 'tcp',
-  }
-  firewalld_port { '8081/tcp':
-    ensure   => present,
-    zone     => 'public',
-    port     => 8081,
-    protocol => 'tcp',
-  }
+  # firewalld_port { '8080/tcp':
+  #   ensure   => present,
+  #   zone     => 'public',
+  #   port     => 8080,
+  #   protocol => 'tcp',
+  # }
+  # firewalld_port { '8081/tcp':
+  #   ensure   => present,
+  #   zone     => 'public',
+  #   port     => 8081,
+  #   protocol => 'tcp',
+  # }
 }

@@ -1,0 +1,4 @@
+# data/nodes/db.preda.ca.yaml
+---
+
+puppetdb::server::open_firewall: false
