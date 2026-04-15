@@ -21,9 +21,16 @@ class profile::tomcat {
     catalina_base => '/opt/tomcat/first',
     war_source    => '/opt/tomcat/webapps/docs/appdev/sample/sample.war',
   }
-  firewall { '101 allow http and https access':
-    dport => [8081, 8443],
-    proto => 'tcp',
-    jump  => 'accept',
+  firewalld_port { '8081/tcp':
+    ensure   => present,
+    zone     => 'public',
+    port     => 8081,
+    protocol => 'tcp',
+  }
+  firewalld_port { '8443/tcp':
+    ensure   => present,
+    zone     => 'public',
+    port     => 8443,
+    protocol => 'tcp',
   }
 }
