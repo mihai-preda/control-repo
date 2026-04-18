@@ -13,13 +13,13 @@ class profile::puppetdb {
   firewalld_port { '8080/tcp':
     ensure   => present,
     zone     => 'public',
-    port     => 8080,
+    port     => '8080',
     protocol => 'tcp',
   }
   firewalld_port { '8081/tcp':
     ensure   => present,
     zone     => 'public',
-    port     => 8081,
+    port     => '8081',
     protocol => 'tcp',
   }
 }
