@@ -12,7 +12,7 @@ class profile::zabbixdb {
   firewalld_port { '5432/tcp':
     ensure   => present,
     zone     => 'public',
-    port     => 5432,
+    port     => '5432',
     protocol => 'tcp',
   }
 }
