@@ -10,7 +10,7 @@ class profile::ssc {
     country    => 'CA',
     state      => 'British Columbia',
     locality   => 'Delta',
-    days       => 365,
+    days       => '365',
   }
   $fqdn = $facts['networking']['fqdn']
   $ssl_dir = '/etc/pki/tls'

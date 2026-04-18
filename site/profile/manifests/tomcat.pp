@@ -24,13 +24,13 @@ class profile::tomcat {
   firewalld_port { '8081/tcp':
     ensure   => present,
     zone     => 'public',
-    port     => 8081,
+    port     => '8081',
     protocol => 'tcp',
   }
   firewalld_port { '8443/tcp':
     ensure   => present,
     zone     => 'public',
-    port     => 8443,
+    port     => '8443',
     protocol => 'tcp',
   }
 }
