@@ -6,5 +6,5 @@ class role::default {
   include epel
   include profile::zabbix_agent
   include profile::hiera_test
-  #include firewalld
+  #do not include FIREWALLD HERE
 }
