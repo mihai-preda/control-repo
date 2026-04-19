@@ -1,6 +1,6 @@
 # data/nodes/db.preda.ca.yaml
 ---
 
-puppetdb::server::manage_firewall: false
+puppetdb::server::manage_firewall: true
 puppetdb::postgres_version: '16'
 postgresql::globals::manage_package_repo: true
