@@ -18,10 +18,6 @@ class profile::base {
     path    => '/etc/sudoers.d/wheel',
     content => '%wheel ALL=(ALL) NOPASSWD: ALL',
   }
-  firewall { '000 accept all icmp requests':
-    proto => 'icmp',
-    jump  => 'accept',
-  }
   if $facts['is_virtual'] == false {
     package { 'pciutils':
       ensure => 'present',
