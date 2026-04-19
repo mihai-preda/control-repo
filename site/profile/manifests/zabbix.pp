@@ -26,4 +26,9 @@ class profile::zabbix {
     database_type     => 'postgresql',
     database_password => 'Burninator@1',
   }
+  firewall { '100 allow zabbix agent and zabbix server access':
+    dport => [10050, 10051],
+    proto => 'tcp',
+    jump  => 'accept',
+  }
 }

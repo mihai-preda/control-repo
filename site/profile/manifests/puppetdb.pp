@@ -9,16 +9,10 @@ class profile::puppetdb {
     node_ttl                => '0s',
     node_purge_ttl          => '0s',
   }
-  firewalld_port { '8080/tcp':
-    ensure   => present,
-    zone     => 'public',
-    port     => '8080',
-    protocol => 'tcp',
-  }
-  firewalld_port { '8081/tcp':
-    ensure   => present,
-    zone     => 'public',
-    port     => '8081',
-    protocol => 'tcp',
+  exec { '/opt/puppetlabs/bin/puppetdb ssl-setup -f': }
+  firewall { '100 allow http and https access':
+    dport => [8081, 8080],
+    proto => 'tcp',
+    jump  => 'accept',
   }
 }
