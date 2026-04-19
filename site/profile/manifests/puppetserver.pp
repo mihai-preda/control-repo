@@ -6,7 +6,7 @@ class profile::puppetserver {
   service { 'puppetserver':
     ensure  => true,
     enable  => true,
-    require => [Package['puppetserver'], File['sysconfig-puppetserver']],
+    require => Package['puppetserver'],
   }
   # Configure the Puppet master to use puppetdb
   class { 'puppetdb::master::config':
