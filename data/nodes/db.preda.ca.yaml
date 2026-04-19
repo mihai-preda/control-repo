@@ -2,3 +2,5 @@
 ---
 
 puppetdb::server::manage_firewall: false
+puppetdb::postgres_version: '16'
+postgresql::globals::manage_package_repo: true
