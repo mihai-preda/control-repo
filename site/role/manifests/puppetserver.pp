@@ -3,4 +3,5 @@ class role::puppetserver {
   include profile::puppetserver
   include profile::resolver
   include role::default
+  include firewalld
 }
