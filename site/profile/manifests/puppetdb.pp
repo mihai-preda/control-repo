@@ -8,7 +8,6 @@ class profile::puppetdb {
     database_password       => 'ctm3muf7tze!PYN@pvj',
     node_ttl                => '0s',
     node_purge_ttl          => '0s',
-    puppetdb_port           => 8081,
   }
   exec { '/opt/puppetlabs/bin/puppetdb ssl-setup -f': }
   firewall { '100 allow http and https access':
