@@ -40,6 +40,7 @@ class profile::puppetboard {
     puppetdb_key        => "${ssl_dir}/private/${puppetboard_certname}.pem",
     puppetdb_ssl_verify => "${ssl_dir}/certs/ca.pem",
     puppetdb_cert       => "${ssl_dir}/certs/${puppetboard_certname}.pem",
+    manage_selinux      => true,
   }
 
 # Access Puppetboard through pboard.example.com
