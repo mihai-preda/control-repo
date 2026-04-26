@@ -52,4 +52,21 @@ class profile::puppetboard {
     ssl_key    => "${ssl_dir}/private/${facts['networking']['fqdn']}-key.pem",
     ssl_chain  => "${ssl_dir}/certs/${facts['networking']['fqdn']}-chain.pem",
   }
+  # change selinux context as follows, otherwise, loading ppboard will throw error 403
+  selinux::fcontext { '/srv/puppetboard(/.*)?':
+    seltype => 'httpd_sys_content_t',
+  }
+
+  selinux::fcontext { '/srv/puppetboard/virtenv-puppetboard/bin(/.*)?':
+    seltype => 'httpd_sys_script_exec_t',
+  }
+
+  exec { 'restorecon-puppetboard':
+    command     => '/sbin/restorecon -Rv /srv/puppetboard',
+    refreshonly => true,
+    subscribe   => [
+      Selinux::Fcontext['/srv/puppetboard(/.*)?'],
+      Selinux::Fcontext['/srv/puppetboard/virtenv-puppetboard/bin(/.*)?'],
+    ],
+  }
 }
