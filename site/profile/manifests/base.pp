@@ -2,7 +2,6 @@
 class profile::base {
   exec { 'set locale':
     command => '/bin/localectl set-locale LANG=en_GB',
-    require => Package['glibc-langpack-en'],
   }
   package { 'htop':
     ensure => 'present',
