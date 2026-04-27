@@ -11,8 +11,13 @@ class profile::puppetdb {
   }
   exec { '/opt/puppetlabs/bin/puppetdb ssl-setup -f': }
   firewall { '100 allow http and https access':
-    dport => [8081, 8080],
+    dport => [8080, 8081],
     proto => 'tcp',
+    jump  => 'accept',
+  }
+  -> firewall { '101 allow zabbix agent':
+    proto => 'tcp',
+    dport => [10050, 10051],
     jump  => 'accept',
   }
 }
