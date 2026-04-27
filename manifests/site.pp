@@ -7,3 +7,4 @@ node 'monit.preda.ca' { include role::zabbix }
 node 'zdb.preda.ca' { include role::zabbixdb }
 node 'win-38njq8tg.preda.ca' { include role::telnet }
 node 'app-srv1.preda.ca' { include role::app1 }
+node 'mj08fld2.preda.ca' { include role::default }
