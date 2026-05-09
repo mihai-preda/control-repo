@@ -4,4 +4,5 @@ class role::sp1 {
   include profile::resolver
   include profile::openvox_agent
   include firewalld
+  include accounts
 }
