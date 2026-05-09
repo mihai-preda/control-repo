@@ -1,6 +1,10 @@
 # data/data/nodes/mj08fld2.preda.ca.yaml
 ---
 
+accounts::user_list:
+  mihai:
+    groups: [wheel, users, libvirt]
+
 firewalld::default_zone: 'public'
 firewalld::service_ensure: 'running'
 
