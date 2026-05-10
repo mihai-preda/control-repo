@@ -4,7 +4,7 @@ accounts::user_list:
   mihai:
     groups: [wheel, users, libvirt]
 
-stdlib::manage::create_resources:
+profile::base::files:
   file:
     /mnt/shared:
       ensure: directory
