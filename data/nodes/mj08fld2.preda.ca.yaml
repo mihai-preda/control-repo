@@ -10,6 +10,11 @@ nfs::nfs_v4_client: true
 nfs::nfs_v4_idmap_domain: "%{facts.networking.domain}"
 nfs::nfs_v4_mount_root: "/share"
 nfs::nfs_server: "debt.preda.ca"
+nfs::mounts:
+  - name: "share"
+    server: "debt.preda.ca"
+    path: "/share"
+    atboot: true
 
 firewalld::default_zone: "public"
 firewalld::service_ensure: "running"
