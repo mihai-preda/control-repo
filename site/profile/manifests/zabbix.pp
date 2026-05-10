@@ -1,12 +1,14 @@
 # zabbix server profile
-class profile::zabbix {
+class profile::zabbix (
+  String $database_password,
+) {
   class { 'zabbix::web':
     manage_vhost       => true,
     zabbix_server_name => '',
     zabbix_url         => 'monit.preda.ca',
     database_name      => 'zabbixdb',
     database_user      => 'zabbix_user',
-    database_password  => 'Burninator@1',
+    database_password  => $database_password,
     zabbix_timezone    => 'America/Vancouver',
     manage_repo        => true,
     zabbix_version     => '6.0',
@@ -24,6 +26,6 @@ class profile::zabbix {
     database_name     => 'zabbixdb',
     database_user     => 'zabbix_user',
     database_type     => 'postgresql',
-    database_password => 'Burninator@1',
+    database_password => $database_password,
   }
 }
