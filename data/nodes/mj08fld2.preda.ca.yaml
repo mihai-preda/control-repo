@@ -14,7 +14,7 @@ nfs::mounts:
   /mnt/pool1/ds3/share:
     server: "debt.preda.ca"
     share: "/share"
-    atboot: "yes"
+    atboot: true
 
 
 firewalld::default_zone: "public"
