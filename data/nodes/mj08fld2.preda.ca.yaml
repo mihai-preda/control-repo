@@ -5,12 +5,11 @@ accounts::user_list:
     groups: [wheel, users, libvirt]
 
 profile::base::files:
-  file:
-    /mnt/shared:
-      ensure: directory
-      owner: mihai
-      group: libvirt
-      mode: "0775"   
+  /mnt/shared:
+    ensure: directory
+    owner: mihai
+    group: libvirt
+    mode: "0775"
 classes:
   - nfs
 nfs::client_enabled: true
