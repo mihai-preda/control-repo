@@ -10,6 +10,7 @@ profile::base::files:
     owner: mihai
     group: libvirt
     mode: "0775"
+
 classes:
   - nfs
 nfs::client_enabled: true
