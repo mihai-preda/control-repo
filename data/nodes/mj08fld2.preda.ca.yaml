@@ -4,13 +4,6 @@ accounts::user_list:
   mihai:
     groups: [wheel, users, libvirt]
 
-profile::base::files:
-  /mnt/shared:
-    ensure: directory
-    owner: mihai
-    group: libvirt
-    mode: "0775"
-
 classes:
   - nfs
 nfs::client_enabled: true
@@ -21,8 +14,11 @@ nfs::nfs_server: "debt.preda.ca"
 nfs::mounts:
   /mnt/shared:
     server: "debt.preda.ca"
-    share: "/share"
+    share: "share"
     atboot: true
+    owner: mihai
+    group: libvirt
+    mode: "0775"
 
 
 firewalld::default_zone: "public"
