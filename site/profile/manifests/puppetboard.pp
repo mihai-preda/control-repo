@@ -48,9 +48,9 @@ class profile::puppetboard (
     vhost_name => 'web.preda.ca',
     port       => 443,
     ssl        => true,
-    ssl_cert   => "${ssl_dir}/certs/${facts['networking']['fqdn']}.pem",
-    ssl_key    => "${ssl_dir}/private/${facts['networking']['fqdn']}.pem",
-    ssl_chain  => "${ssl_dir}/certs/ca.pem",
+    ssl_cert   => "${ssl_dir}/certs/${facts['networking']['fqdn']}-cert.pem",
+    ssl_key    => "${ssl_dir}/private/${facts['networking']['fqdn']}-key.pem",
+    ssl_chain  => "${ssl_dir}/certs/${facts['networking']['fqdn']}-chain.pem",
   }
   # change selinux context as follows, otherwise, loading ppboard will throw error 403
   selinux::fcontext { '/srv/puppetboard(/.*)?':
