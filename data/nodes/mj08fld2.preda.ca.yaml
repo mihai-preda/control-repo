@@ -7,7 +7,7 @@ accounts::user_list:
 stdlib::manage::create_resources:
   file:
     /mnt/shared:
-      ensure: file
+      ensure: directory
       owner: mihai
       group: libvirt
       mode: "0775"   
