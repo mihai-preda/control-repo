@@ -1,20 +1,26 @@
 # data/data/nodes/mj08fld2.preda.ca.yaml
 ---
-
 accounts::user_list:
   mihai:
     groups: [wheel, users, libvirt]
+classes:
+  - nfs
+nfs::client_enabled: true
+nfs::nfs_v4_client: true
+nfs::nfs_v4_idmap_domain: "%{facts.networking.domain}"
+nfs::nfs_v4_mount_root: "/share"
+nfs::nfs_server: "debt.preda.ca"
 
-firewalld::default_zone: 'public'
-firewalld::service_ensure: 'running'
+firewalld::default_zone: "public"
+firewalld::service_ensure: "running"
 
 firewalld::zones:
   public:
     ensure: present
     target: default
-    
+
 firewalld::services:
-  'Allow DHCPS, SSH, and Zabbix from the public zone':
+  "Allow DHCPS, SSH, and Zabbix from the public zone":
     ensure: present
     service: ssh
     zone: public
@@ -29,4 +35,4 @@ firewalld::services:
   zabbix-agent:
     ensure: present
     service: zabbix-agent
-    zone: public  
+    zone: public
