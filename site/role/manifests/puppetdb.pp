@@ -1,6 +1,6 @@
 # role db
 class role::puppetdb {
-  include role::default
+  include accounts
   include profile::puppetdb
   include profile::zabbixdb
   include profile::resolver

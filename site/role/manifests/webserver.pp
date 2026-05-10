@@ -2,6 +2,6 @@
 class role::webserver {
   include profile::puppetboard
   include profile::resolver
-  include role::default
+  include accounts
   include firewalld
 }
