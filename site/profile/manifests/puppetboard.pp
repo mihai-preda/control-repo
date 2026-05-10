@@ -16,7 +16,7 @@ class profile::puppetboard (
   $ssl_dir = '/etc/pki/tls'
   file { "${ssl_dir}/private/${facts['networking']['fqdn']}.pem":
     ensure => file,
-    mode   => '0640',
+    mode   => '0644',
     group  => apache,
     source => "/etc/puppetlabs/puppet/ssl/private_keys/${facts['networking']['fqdn']}.pem",
   }
