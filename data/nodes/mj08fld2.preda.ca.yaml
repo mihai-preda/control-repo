@@ -43,5 +43,7 @@ firewalld::rich_rules:
     ensure: present
     zone: public
     source: "10.21.2.0/24"
-    port: "5900"
+    port:
+      portid: "5900"
+      protocol: tcp
     action: accept
