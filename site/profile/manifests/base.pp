@@ -1,5 +1,15 @@
 # base profile
-class profile::base {
+# @param files A hash of file resources to create, 
+#where the key is the file path and the value is a hash of attributes for that file resource.
+class profile::base (
+  Hash $files = {},
+) {
+  # This dynamically creates file resources based on the Hiera hash
+  $files.each |String $path, Hash $attributes| {
+    file { $path:
+      * => $attributes,
+    }
+  }
   exec { 'set locale':
     command => '/bin/localectl set-locale LANG=en_GB',
     unless  => '/bin/localectl | /bin/grep -q "LANG=en_GB"',

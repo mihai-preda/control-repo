@@ -2,6 +2,6 @@
 class role::zabbix {
   include profile::zabbix
   include profile::resolver
-  include role::default
+  include accounts
   include firewalld
 }

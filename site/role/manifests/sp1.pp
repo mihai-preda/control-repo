@@ -6,4 +6,5 @@ class role::sp1 {
   include profile::zabbix_agent
   include firewalld
   include accounts
+  include profile::nfs_client
 }
