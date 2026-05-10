@@ -12,7 +12,7 @@ profile::nfs_client::mounts:
     server: "debtnas.preda.ca"
     share: "/mnt/pool1/ds3/share"
     atboot: true
-    
+
 firewalld::default_zone: "public"
 firewalld::service_ensure: "running"
 
@@ -39,10 +39,9 @@ firewalld::services:
     service: zabbix-agent
     zone: public
 firewalld::rich_rules:
-    ensure: present
-    zone: public
-    source: "10.21.2.0/24"
-    port: "5900-5999"
-    protocol: tcp
-    action: accept
-    
+  ensure: present
+  zone: public
+  source: "10.21.2.0/24"
+  port: "5900"
+  protocol: tcp
+  action: accept
