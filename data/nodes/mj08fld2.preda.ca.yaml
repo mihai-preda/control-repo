@@ -12,11 +12,7 @@ profile::nfs_client::mounts:
     server: "debtnas.preda.ca"
     share: "/mnt/pool1/ds3/share"
     atboot: true
-    owner: mihai
-    group: libvirt
-    mode: "0775"
-
-
+    
 firewalld::default_zone: "public"
 firewalld::service_ensure: "running"
 
