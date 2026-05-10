@@ -10,7 +10,7 @@ nfs::nfs_v4_idmap_domain: "%{facts.networking.domain}"
 profile::nfs_client::mounts:
   /mnt/shared:
     server: "debtnas.preda.ca"
-    share: "share"
+    share: "/mnt/pool1/ds3/share"
     atboot: true
     owner: mihai
     group: libvirt
