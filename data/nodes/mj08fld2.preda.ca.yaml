@@ -3,6 +3,14 @@
 accounts::user_list:
   mihai:
     groups: [wheel, users, libvirt]
+
+stdlib::manage::create_resources:
+  file:
+    /mnt/shared:
+      ensure: file
+      owner: mihai
+      group: libvirt
+      mode: "0775"   
 classes:
   - nfs
 nfs::client_enabled: true
@@ -11,7 +19,7 @@ nfs::nfs_v4_idmap_domain: "%{facts.networking.domain}"
 nfs::nfs_v4_mount_root: "/share"
 nfs::nfs_server: "debt.preda.ca"
 nfs::mounts:
-  /mnt/pool1/ds3/share:
+  /mnt/shared:
     server: "debt.preda.ca"
     share: "/share"
     atboot: true
