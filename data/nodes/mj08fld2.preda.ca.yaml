@@ -4,14 +4,10 @@ accounts::user_list:
   mihai:
     groups: [wheel, users, libvirt]
 
-classes:
-  - nfs
 nfs::client_enabled: true
 nfs::nfs_v4_client: true
 nfs::nfs_v4_idmap_domain: "%{facts.networking.domain}"
-nfs::nfs_v4_mount_root: "/share"
-nfs::nfs_server: "debt.preda.ca"
-nfs::mounts:
+profile::nfs_client::mounts:
   /mnt/shared:
     server: "debt.preda.ca"
     share: "share"
