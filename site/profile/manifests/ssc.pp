@@ -2,8 +2,8 @@
 # private key is created in /etc/pki/tls/certs
 class profile::ssc {
   class { 'openssl':
-    package_ensure         => latest,
-    ca_certificates_ensure => latest,
+    package_ensure         => present,
+    ca_certificates_ensure => present,
   }
   openssl::certificate::x509 { $facts['networking']['fqdn']:
     commonname => $facts['networking']['fqdn'],

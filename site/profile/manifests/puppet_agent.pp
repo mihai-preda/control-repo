@@ -25,7 +25,7 @@ class profile::puppet_agent (
         setting => 'runinterval',
         value   => $run_interval,
       },
-      # ... other settings
+
     ],
   }
 }

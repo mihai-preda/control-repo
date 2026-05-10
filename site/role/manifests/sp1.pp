@@ -3,6 +3,7 @@ class role::sp1 {
   include profile::base
   include profile::resolver
   include profile::openvox_agent
+  include profile::zabbix_agent
   include firewalld
   include accounts
 }

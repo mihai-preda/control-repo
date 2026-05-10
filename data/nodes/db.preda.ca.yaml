@@ -4,6 +4,36 @@
 profile::puppetdb::database_password: "ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAeojb1xavfWapziP50DO4KnAr1H2lKSM2Ni1wKHslITuCtToiTcQX84Z8xPWiMdbDLFqS8Q1vk5ekEoTsACHu4vCiBCLp3xET1a/irkTdIyGHzJTd5il2C7BTT7eaEc6rK2bGe/0HOh/AFnm6CVYg+fQWgtuCRLp1r8BQuX6v2QBPH8xTalvbyZJNx1/cxcbJh8PF79wl0ofJtc8uEOFe8IY+PaneZhb+lU9yirFk9nq+TcO0nyErfbXF4s/hd2Hvtu3TrDAYs2NVeYC1aZ3oDfFrNF4xlnXVtFuTbmhh+yBlofkMzTOPNKH32XVGMsDcbsT3GbxzRO097Y58OW5UnjBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCTLHVwBGMOOvI5xl2r1kY+gCANY3C0fpdMNxic9f+U+GVBetH3Fp+VTMe6X0709RyBsw==]"
 profile::zabbixdb::database_password: "ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAM/ddSNdhfW+coFma2FUDUHWJpW/8bcNEHP3rjuBrSkYdfg9UlIah/SLkRnzbc4bRbU+e9epWCUZxQT2OkA9LVtTmGXQNBPiZ0zZk48VS11/LiD3bm0WGOOme2wreLCfIm5/TGjGkFxT6Bj1JFzAe3PoZkQ0b5wh182wz3olfHiDZ7aGBgah4MDgEmMw1t9bmu/ors5VmG81PGyOqmB16pQURAlLtlaG5nI+sd6+EhErZPaEAcxwl56/yHmbvCI0cg5eAQ6upsoe3719H+4GHgb04FYB07ElN4/Z2zU/tlAC2gOdfWFHTr5rnN3T9SyPcLWMPF9htS3VACggL61WbXTA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCmF3UHj8G7bHOScq5iwtdwgBDnOTOO7BqJ6IBHtHXxSwz6]"
 
-puppetdb::server::manage_firewall: true
+puppetdb::server::manage_firewall: false
+
+firewalld::default_zone: 'public'
+firewalld::service_ensure: 'running'
+
+firewalld::zones:
+  public:
+    ensure: present
+    target: default
+
+firewalld::services:
+  ssh:
+    ensure: present
+    service: ssh
+    zone: public
+  dhcp:
+    ensure: present
+    service: dhcp
+    zone: public
+  dhcpv6-client:
+    ensure: present
+    service: dhcpv6-client
+    zone: public
+  zabbix-agent:
+    ensure: present
+    service: zabbix-agent
+    zone: public
+  cockpit:
+    ensure: absent
+    service: cockpit
+    zone: public
 puppetdb::postgres_version: '16'
 postgresql::globals::manage_package_repo: true
