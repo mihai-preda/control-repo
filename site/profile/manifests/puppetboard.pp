@@ -1,5 +1,7 @@
 # profile puppetboard
-class profile::puppetboard {
+class profile::puppetboard (
+  String $secret_key,
+) {
   # Configure Apache on this server
   class { 'apache':
     default_vhost => false,
@@ -33,7 +35,7 @@ class profile::puppetboard {
 
   class { 'puppetboard':
     python_version      => '3.9',
-    secret_key          => 'guardians0-=1',
+    secret_key          => $secret_key,
     manage_virtualenv   => true,
     puppetdb_host       => 'db.preda.ca',
     puppetdb_port       => 8081,

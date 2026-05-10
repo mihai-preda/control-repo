@@ -1,6 +1,8 @@
 # puppetboard server
 ---
 
+profile::puppetboard::secret_key: "ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAC3/18MlmkkWAcFnCBxJRzWNKPxPUi22jLO1JT7fpMU6vg5KqI6F5lxKCebsBmwtSsOvt7SCdM6PCh9ELBbzDmmXDV1UIkMiWh7//Vs3GwzyCA3/LnNMx3kf8+LchIMOy1T7UZ/DqJY5JUQue4DPS66KmvJEtSffF/JevZL/ozIGwsqtbrFUxcxWylBl0cF/IyruBo6H4EN1qMh69u+Jq0uahHFZnmybhAqQPyy4weCSVWPbXJm14SsVgiXqAUVE53XaM6xGeWLvGul2kOaw31MK21bKZKYeD1OJCIUv3IPpU2XNivlXODo3Pu0ePxeldy2M+fBGcJNC7/7eH0oQTPjA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBD65Y1bdBsbAuWOzPHicItOgBBLCbeaFm3FVMJrBc/qOVy0]"
+
 firewalld::default_zone: 'public'
 firewalld::service_ensure: 'running'
 

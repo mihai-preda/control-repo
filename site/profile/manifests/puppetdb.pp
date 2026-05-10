@@ -1,11 +1,13 @@
 # profile puppetdb
-class profile::puppetdb {
+class profile::puppetdb (
+  String $database_password,
+) {
   # Configure puppetdb and its underlying database
   class { 'puppetdb':
     postgresql_ssl_on       => false,
     database_host           => 'db.preda.ca',
     database_listen_address => '0.0.0.0',
-    database_password       => 'ctm3muf7tze!PYN@pvj',
+    database_password       => $database_password,
     node_ttl                => '0s',
     node_purge_ttl          => '0s',
   }
