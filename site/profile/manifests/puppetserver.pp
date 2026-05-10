@@ -23,9 +23,15 @@ class profile::puppetserver {
   # Global layer hiera config
   class { 'hiera':
     hiera_version   => '5',
-    hiera5_defaults => { 'datadir' => 'data', 'data_hash' => 'yaml_data' },
+    hiera5_defaults => {
+      'datadir'    => 'data',
+      'lookup_key' => 'eyaml_lookup_key',
+      'options'    => {
+        'pkcs7_private_key' => '/etc/puppetlabs/puppet/eyaml/keys/private_key.pkcs7.pem',
+        'pkcs7_public_key'  => '/etc/puppetlabs/puppet/eyaml/keys/public_key.pkcs7.pem',
+      },
+    },
     hierarchy       => [
-      { 'name' => 'Virtual yaml', 'path'  => 'virtual/%{virtual}.yaml' },
       { 'name' => 'Nodes yaml', 'path' => 'nodes/%{trusted.certname}.yaml' },
       { 'name' => 'OsFamily yaml', 'path' => 'os/%{facts.os.family}.yaml' },
       { 'name' => 'Default yaml file', 'path' => 'common.yaml' },

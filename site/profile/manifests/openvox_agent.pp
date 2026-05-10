@@ -1,8 +1,10 @@
 # Install openvox agent using the foreman puppet module
 # use hiera per node or per os family
-class profile::openvox_agent {
+class profile::openvox_agent (
+  Integer $release      = 8,
+  String  $agent_server = 'puppet.preda.ca',
+) {
   include yum
-  $release=8
   $os_name = $facts['os']['name'] ? {
     'Fedora' => 'fedora',
     'Amazon' => 'amazon',
@@ -13,5 +15,5 @@ class profile::openvox_agent {
     ensure => 'present',
     source => "https://yum.voxpupuli.org/openvox${release}-release-${os_name}-${facts['os']['release']['major']}.noarch.rpm",
   }
-  class { 'puppet': runinterval => 3600 , runmode => 'service', agent_server_hostname => 'puppet.preda.ca' }
+  class { 'puppet': runinterval => 3600, runmode => 'service', agent_server_hostname => $agent_server }
 }

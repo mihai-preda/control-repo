@@ -1,7 +1,9 @@
 # Tomcat manifests file
-class profile::tomcat {
+class profile::tomcat (
+  String $source_url,
+) {
   tomcat::install { '/opt/tomcat':
-    source_url => 'https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.11/bin/apache-tomcat-11.0.11.tar.gz',
+    source_url => $source_url,
   }
   tomcat::instance { 'default':
     catalina_home => '/opt/tomcat',
@@ -16,10 +18,6 @@ class profile::tomcat {
     additional_attributes => {
       'redirectPort' => '8443',
     },
-  }
-  tomcat::war { 'sample.war':
-    catalina_base => '/opt/tomcat/first',
-    war_source    => '/opt/tomcat/webapps/docs/appdev/sample/sample.war',
   }
   firewall { '101 allow http and https access':
     dport => [8081, 8443],

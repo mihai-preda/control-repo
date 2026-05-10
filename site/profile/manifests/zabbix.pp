@@ -4,7 +4,7 @@ class profile::zabbix (
 ) {
   class { 'zabbix::web':
     manage_vhost       => true,
-    zabbix_server_name => '',
+    zabbix_server_name => 'monit.preda.ca',
     zabbix_url         => 'monit.preda.ca',
     database_name      => 'zabbixdb',
     database_user      => 'zabbix_user',

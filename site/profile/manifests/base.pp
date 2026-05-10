@@ -12,6 +12,7 @@ class profile::base (
   }
   exec { 'set locale':
     command => '/bin/localectl set-locale LANG=en_GB',
+    unless  => '/bin/localectl | /bin/grep -q "LANG=en_GB"',
   }
   package { 'htop':
     ensure => 'present',
@@ -19,14 +20,12 @@ class profile::base (
   package { 'rsync':
     ensure => 'present',
   }
-  notify { 'hello from the puppet server':
-  }
   file { 'wheel':
     owner   => root,
     group   => root,
     mode    => '0440',
     path    => '/etc/sudoers.d/wheel',
-    content => '%wheel ALL=(ALL) NOPASSWD: ALL',
+    content => "%wheel ALL=(ALL) NOPASSWD: ALL\n",
   }
   if $facts['is_virtual'] == false {
     package { 'pciutils':
