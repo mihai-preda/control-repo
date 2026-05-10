@@ -38,12 +38,9 @@ firewalld::services:
     ensure: present
     service: zabbix-agent
     zone: public
-firewalld::rich_rules:
-  "Allow VNC from local network":
+firewalld::ports:
+  'Open port 5900 in the public zone':
     ensure: present
     zone: public
-    source: "10.21.2.0/24"
-    port:
-      portid: "5900"
-      protocol: tcp
-    action: accept
+    port: 5900
+    protocol: 'tcp'
