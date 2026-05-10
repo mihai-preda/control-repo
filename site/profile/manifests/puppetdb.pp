@@ -15,28 +15,14 @@ class profile::puppetdb (
     command => '/opt/puppetlabs/bin/puppetdb ssl-setup',
     unless  => '/usr/bin/test -f /etc/puppetlabs/puppetdb/ssl/ca.pem',
   }
-  firewalld_port { 'puppetdb-http':
-    ensure   => present,
-    zone     => 'public',
-    port     => 8080,
-    protocol => 'tcp',
+  firewall { '100 allow puppetdb':
+    dport => [8080, 8081],
+    proto => 'tcp',
+    jump  => 'accept',
   }
-  firewalld_port { 'puppetdb-https':
-    ensure   => present,
-    zone     => 'public',
-    port     => 8081,
-    protocol => 'tcp',
-  }
-  firewalld_port { 'zabbix-agent':
-    ensure   => present,
-    zone     => 'public',
-    port     => 10050,
-    protocol => 'tcp',
-  }
-  firewalld_port { 'zabbix-agent-active':
-    ensure   => present,
-    zone     => 'public',
-    port     => 10051,
-    protocol => 'tcp',
+  firewall { '101 allow zabbix agent':
+    proto => 'tcp',
+    dport => [10050, 10051],
+    jump  => 'accept',
   }
 }

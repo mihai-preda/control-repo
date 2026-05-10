@@ -11,10 +11,9 @@ class profile::zabbixdb (
     database_password => $database_password,
     database_name     => 'zabbixdb',
   }
-  firewalld_port { 'postgresql':
-    ensure   => present,
-    zone     => 'public',
-    port     => 5432,
-    protocol => 'tcp',
+  firewall { '200 allow zabbix server access to pgsql':
+    dport => [5432],
+    proto => 'tcp',
+    jump  => 'accept',
   }
 }
