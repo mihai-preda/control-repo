@@ -9,4 +9,5 @@ class role::sp1 {
   include profile::nfs_client
   include profile::libvirt_bridge
   include epel
+  include profile::packages
 }

@@ -5,4 +5,5 @@ class role::app1 {
   include profile::ssc
   include profile::tomcat
   include firewalld
+  include profile::packages
 }

@@ -4,4 +4,5 @@ class role::puppetserver {
   include profile::resolver
   include accounts
   include firewalld
+  include profile::packages
 }
