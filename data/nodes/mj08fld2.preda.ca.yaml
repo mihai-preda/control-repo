@@ -38,6 +38,10 @@ firewalld::services:
     ensure: present
     service: zabbix-agent
     zone: public
+  cockpit:
+    ensure: present
+    service: cockpit
+    zone: public  
 firewalld::ports:
   'Open port 5900 in the public zone':
     ensure: present
