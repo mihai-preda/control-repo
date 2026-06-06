@@ -5,4 +5,5 @@ class role::puppetdb {
   include profile::zabbixdb
   include profile::resolver
   include profile::base
+  include epel
 }

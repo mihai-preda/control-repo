@@ -5,4 +5,5 @@ class role::zabbix {
   include accounts
   include firewalld
   include profile::base
+  include epel
 }
