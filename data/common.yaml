@@ -11,5 +11,5 @@ profile::packages::install:
   - vim
   - curl
   - git
-  
+  - htop  
   
