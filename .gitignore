@@ -1,3 +1,3 @@
 site/files/*.pem
 .ruby-version
-.claude/*
+.claude*
