@@ -1,5 +1,7 @@
 # Install openvox agent using the foreman puppet module
 # use hiera per node or per os family
+# @param release the openvox release to use, default 8
+# @param agent_server the puppet server to connect to, default puppet.preda.ca
 class profile::openvox_agent (
   Integer $release      = 8,
   String  $agent_server = 'puppet.preda.ca',
