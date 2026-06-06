@@ -4,4 +4,5 @@ class role::webserver {
   include profile::resolver
   include accounts
   include firewalld
+  include profile::base
 }

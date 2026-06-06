@@ -4,4 +4,5 @@ class role::zabbix {
   include profile::resolver
   include accounts
   include firewalld
+  include profile::base
 }

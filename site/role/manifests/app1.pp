@@ -6,4 +6,5 @@ class role::app1 {
   include profile::tomcat
   include firewalld
   include profile::packages
+  include profile::base
 }
