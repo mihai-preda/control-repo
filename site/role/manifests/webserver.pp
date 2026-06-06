@@ -6,4 +6,5 @@ class role::webserver {
   include firewalld
   include profile::base
   include epel
+  include profile::zabbix_agent
 }

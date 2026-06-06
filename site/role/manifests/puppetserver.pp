@@ -6,4 +6,5 @@ class role::puppetserver {
   include firewalld
   include profile::packages
   include profile::base
+  include profile::zabbix_agent
 }
