@@ -10,6 +10,5 @@ profile::packages::install:
   - epel-release
   - vim
   - curl
-  - git
-  - htop  
+  - git 
   
