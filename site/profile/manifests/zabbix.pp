@@ -1,4 +1,5 @@
 # zabbix server profile
+# @param database_password - the password for the zabbix database user
 class profile::zabbix (
   String $database_password,
 ) {

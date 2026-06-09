@@ -1,4 +1,5 @@
 # profile puppetdb
+# @param database_password - the password for the puppetdb database user
 class profile::puppetdb (
   String $database_password,
 ) {

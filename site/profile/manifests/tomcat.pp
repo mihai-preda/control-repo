@@ -1,4 +1,5 @@
 # Tomcat manifests file
+# @param source_url - the URL to download the Tomcat package from
 class profile::tomcat (
   String $source_url,
 ) {
