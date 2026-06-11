@@ -54,6 +54,16 @@ class profile::puppetboard (
     ssl_chain  => "/etc/letsencrypt/live/${facts['networking']['fqdn']}/chain.pem",
     require    => Class['profile::certificates'],
   }
+
+  # bare-hostname browser requests arrive on :80; bounce them to the TLS
+  # vhost, same as zabbix::web already does on monit
+  apache::vhost { 'web.preda.ca-http-redirect':
+    servername     => 'web.preda.ca',
+    port           => 80,
+    docroot        => '/var/www/html',
+    manage_docroot => false,
+    redirect_dest  => 'https://web.preda.ca/',
+  }
   # change selinux context as follows, otherwise, loading ppboard will throw error 403
   selinux::fcontext { '/srv/puppetboard(/.*)?':
     seltype => 'httpd_sys_content_t',
