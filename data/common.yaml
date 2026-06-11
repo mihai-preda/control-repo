@@ -19,6 +19,6 @@ profile::packages::install:
 # production, run `certbot delete --cert-name <fqdn>` on web and monit so the
 # next agent run replaces the staging certs.
 profile::certificates::email: 'mpreda@outlook.com'
-profile::certificates::staging: true
+profile::certificates::staging: false
 profile::certificates::cloudflare_api_token: 'ENC[PKCS7,MIIBqQYJKoZIhvcNAQcDoIIBmjCCAZYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAWrqO6eWTEeyzmsfoAssb1uMTcyAsNZ8iqgG8bOOTvwr6K4Mf8sZ5z4q6cqQ9xKBjIxUObmCdW9UC/KWUuHTCw13qn0NrM21UhTJo9S49kRD4uWOHWmi0eQMRtOPnZOmRZp/3kXqTmr5jpFfL8tm4DGqjR2HRUlr/VF1cBVnHsaB3Qr7FY0V1KE5W1WVEG5PISyUtGGdpwwelBxPaJtoB26XrieSXP+CviZozXZ+sFSO35mv8givSCgR3D6/c//euUW/W3nYn7PKlTn5x4TKmdy5ixseicnmAZqj3t3ByCZsdm0foTu1XR2/HNe3lNrdaxOXGEDPGd1kG8KYR6TccdzBsBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAu4FaNNF/+CCOhF08eK1VagECEovYi8D6it3cQ/GY2UolyJ3vqhr/duo5PZeAtVgJH9RQq588P4pj8c4bdPsrT0fF3wSZtC8wJSZovT1azU2nF]'
   
