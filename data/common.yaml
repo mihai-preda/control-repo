@@ -9,5 +9,16 @@ profile::hiera_test::backups_enabled: true
 profile::packages::install:
   - vim
   - curl
-  - git 
+  - git
+
+# Let's Encrypt certificates (profile::certificates).
+# Replace the placeholder with the ENC[PKCS7,...] block printed on the
+# puppetserver by:
+#   eyaml encrypt -l 'profile::certificates::cloudflare_api_token' -s '<token>'
+# Keep staging: true until issuance works end to end. Before flipping to
+# production, run `certbot delete --cert-name <fqdn>` on web and monit so the
+# next agent run replaces the staging certs.
+profile::certificates::email: 'mpreda@outlook.com'
+profile::certificates::staging: true
+profile::certificates::cloudflare_api_token: 'CHANGEME-encrypt-with-eyaml'
   

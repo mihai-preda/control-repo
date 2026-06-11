@@ -16,9 +16,10 @@ class profile::zabbix (
     apache_use_ssl     => true,
     database_host      => 'db.preda.ca',
     database_type      => 'postgresql',
-    apache_ssl_cert    => '/etc/pki/tls/certs/monit.preda.ca-cert.pem',
-    apache_ssl_key     => '/etc/pki/tls/private/monit.preda.ca-key.pem',
-    apache_ssl_chain   => '/etc/pki/tls/certs/monit.preda.ca-chain.pem',
+    apache_ssl_cert    => "/etc/letsencrypt/live/${facts['networking']['fqdn']}/cert.pem",
+    apache_ssl_key     => "/etc/letsencrypt/live/${facts['networking']['fqdn']}/privkey.pem",
+    apache_ssl_chain   => "/etc/letsencrypt/live/${facts['networking']['fqdn']}/chain.pem",
+    require            => Class['profile::certificates'],
   }
   class { 'apache::mod::ssl': }
   class { 'postgresql::client': }
