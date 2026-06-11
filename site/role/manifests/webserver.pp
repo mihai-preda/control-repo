@@ -1,5 +1,6 @@
 # role webserver
 class role::webserver {
+  include profile::certificates
   include profile::puppetboard
   include profile::resolver
   include accounts
