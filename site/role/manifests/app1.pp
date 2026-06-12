@@ -1,7 +1,6 @@
 # app1 role
 class role::app1 {
   include accouts
-  contain openssl::certificates
   include profile::ssc
   include profile::tomcat
   include firewalld
