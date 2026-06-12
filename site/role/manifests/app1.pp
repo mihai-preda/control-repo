@@ -1,7 +1,6 @@
 # app1 role
 class role::app1 {
-  include accouts
-  include profile::ssc
+  include accounts
   include profile::tomcat
   include firewalld
   include profile::packages
