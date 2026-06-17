@@ -1,5 +1,6 @@
 # app1 role
 class role::app1 {
+  include profile::openvox_agent
   include accounts
   include epel
   include profile::tomcat
