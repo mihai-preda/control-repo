@@ -1,15 +1,18 @@
 # Tomcat manifests file
 # @param source_url - the URL to download the Tomcat package from
-# @param keystore_password - password for the self-signed TLS keystore Tomcat
-#   serves on 8443. Self-signed is intentional: this backend sits behind an
-#   httpd front-end that terminates real (public) TLS, so the proxy->Tomcat hop
-#   is still encrypted (a common Cybersecurity mandate). Override via Hiera.
+#
+# The 8443 connector serves a self-signed cert on purpose: this backend is
+# meant to sit behind an httpd front-end that terminates real (public) TLS, so
+# the proxy->Tomcat hop stays encrypted (a common Cybersecurity mandate). The
+# cert is a plain PEM pair generated with the openssl CLI, so no openssl Puppet
+# module is needed. Tomcat 11 requires a nested SSLHostConfig, which the tomcat
+# module emits when given the cert_*_file parameters.
 class profile::tomcat (
   String $source_url,
-  String $keystore_password = 'changeit',
 ) {
-  $keystore = '/opt/tomcat/conf/tomcat-selfsigned.p12'
-  $fqdn     = $facts['networking']['fqdn']
+  $cert = '/opt/tomcat/conf/tomcat-selfsigned.crt'
+  $key  = '/opt/tomcat/conf/tomcat-selfsigned.key'
+  $fqdn = $facts['networking']['fqdn']
 
   package { 'java-17-openjdk-headless':
     ensure => 'present',
@@ -36,39 +39,49 @@ class profile::tomcat (
     },
   }
 
-  # Self-signed TLS keystore for the 8443 connector. keytool ships with the JDK,
-  # so this needs no openssl module. Idempotent via `creates`.
-  exec { 'tomcat-selfsigned-keystore':
-    command  => "/usr/bin/keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -validity 3650 -storetype PKCS12 -keystore ${keystore} -storepass '${keystore_password}' -dname 'CN=${fqdn}, OU=Lab, O=Preda, L=Delta, ST=British Columbia, C=CA' -ext SAN=dns:${fqdn}",
-    creates  => $keystore,
+  # Self-signed PEM cert + key for the TLS connector. openssl ships with the
+  # base OS, so this needs no openssl Puppet module. Idempotent via `creates`.
+  exec { 'tomcat-selfsigned-cert':
+    command  => "/usr/bin/openssl req -x509 -newkey rsa:2048 -nodes -keyout ${key} -out ${cert} -days 3650 -subj '/CN=${fqdn}/OU=Lab/O=Preda/L=Delta/ST=British Columbia/C=CA' -addext 'subjectAltName=DNS:${fqdn}'",
+    creates  => $cert,
     provider => 'shell',
     path     => ['/usr/bin', '/bin'],
-    require  => [Tomcat::Install['/opt/tomcat'], Package['java-17-openjdk-headless']],
+    require  => Tomcat::Install['/opt/tomcat'],
   }
 
-  file { $keystore:
+  file { $key:
     ensure  => file,
     owner   => 'tomcat',
     group   => 'tomcat',
     mode    => '0600',
-    require => Exec['tomcat-selfsigned-keystore'],
+    require => Exec['tomcat-selfsigned-cert'],
   }
 
-  # TLS connector serving the self-signed cert.
+  file { $cert:
+    ensure  => file,
+    owner   => 'tomcat',
+    group   => 'tomcat',
+    mode    => '0644',
+    require => Exec['tomcat-selfsigned-cert'],
+  }
+
+  # TLS connector. The cert_*_file params make the module emit the nested
+  # SSLHostConfig/Certificate that Tomcat 11 requires; attributes_to_remove
+  # strips the deprecated connector-level keystore* attributes Tomcat rejects.
   tomcat::config::server::connector { 'https':
     catalina_base         => '/opt/tomcat',
     port                  => '8443',
     protocol              => 'HTTP/1.1',
     additional_attributes => {
-      'SSLEnabled'   => 'true',
-      'scheme'       => 'https',
-      'secure'       => 'true',
-      'keystoreFile' => $keystore,
-      'keystorePass' => $keystore_password,
-      'keystoreType' => 'PKCS12',
-      'clientAuth'   => 'false',
-      'sslProtocol'  => 'TLS',
+      'SSLEnabled' => 'true',
+      'scheme'     => 'https',
+      'secure'     => 'true',
     },
+    attributes_to_remove  => ['keystoreFile', 'keystorePass', 'keystoreType', 'clientAuth', 'sslProtocol'],
+    cert_key_file         => $key,
+    cert_file             => $cert,
+    cert_chain_file       => $cert,
+    cert_type             => 'RSA',
   }
 
   # A source install ships no service unit, so Tomcat would not survive a
@@ -99,7 +112,8 @@ class profile::tomcat (
     subscribe => [
       Tomcat::Config::Server::Connector['default'],
       Tomcat::Config::Server::Connector['https'],
-      File[$keystore],
+      File[$key],
+      File[$cert],
     ],
   }
 
