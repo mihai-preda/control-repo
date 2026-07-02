@@ -22,10 +22,13 @@ class profile::cockpit (
   }
 
   # In ws-certs.d the alphabetically last *.cert wins, so 50-letsencrypt
-  # outranks the shipped 0-self-signed.cert.
+  # outranks the shipped 0-self-signed.cert. links => follow is required:
+  # the live/ PEMs are relative symlinks into archive/, and the default
+  # (manage) would recreate them as dangling symlinks here.
   file { '/etc/cockpit/ws-certs.d/50-letsencrypt.cert':
     ensure  => file,
     source  => "${live_dir}/fullchain.pem",
+    links   => 'follow',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
@@ -36,6 +39,7 @@ class profile::cockpit (
   file { '/etc/cockpit/ws-certs.d/50-letsencrypt.key':
     ensure    => file,
     source    => "${live_dir}/privkey.pem",
+    links     => 'follow',
     owner     => 'root',
     group     => 'root',
     mode      => '0600',
