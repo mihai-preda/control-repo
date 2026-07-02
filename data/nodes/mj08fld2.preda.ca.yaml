@@ -4,7 +4,7 @@ accounts::user_list:
   mihai:
     groups: [wheel, users, libvirt]
 
-profile::packages::install:
+profile::cockpit::packages:
   - cockpit
   - cockpit-machines
   - cockpit-podman
