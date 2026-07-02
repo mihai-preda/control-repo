@@ -4,6 +4,19 @@ accounts::user_list:
   mihai:
     groups: [wheel, users, libvirt]
 
+profile::packages::install:
+  - cockpit
+  - cockpit-machines
+  - cockpit-podman
+  - cockpit-storaged
+  - cockpit-ws
+  - cockpit-bridge
+  - cockpit-networkmanager
+  - cockpit-sosreport
+  - cockpit-system
+  - cockpit-systemd
+  - cockpit-packagekit
+
 nfs::client_enabled: true
 nfs::nfs_v4_client: true
 nfs::nfs_v4_idmap_domain: "%{facts.networking.domain}"
