@@ -6,16 +6,29 @@ class profile::openvox_agent (
   Integer $release      = 8,
   String  $agent_server = 'puppet.preda.ca',
 ) {
-  include yum
-  $os_name = $facts['os']['name'] ? {
-    'Fedora' => 'fedora',
-    'Amazon' => 'amazon',
-    default  => 'el',
+  $is_windows = $facts['os']['family'] == 'windows'
+
+  # Repo setup is RPM-only. On Windows the OpenVox agent MSI is installed at
+  # build time (see win-srv1-ci/setup.ps1), so there is no repo to add and no
+  # package for the module to manage - only puppet.conf and the service.
+  unless $is_windows {
+    include yum
+    $os_name = $facts['os']['name'] ? {
+      'Fedora' => 'fedora',
+      'Amazon' => 'amazon',
+      default  => 'el',
+    }
+
+    yum::install { "openvox${release}-release":
+      ensure => 'present',
+      source => "https://yum.voxpupuli.org/openvox${release}-release-${os_name}-${facts['os']['release']['major']}.noarch.rpm",
+    }
   }
 
-  yum::install { "openvox${release}-release":
-    ensure => 'present',
-    source => "https://yum.voxpupuli.org/openvox${release}-release-${os_name}-${facts['os']['release']['major']}.noarch.rpm",
+  class { 'puppet':
+    runinterval           => 3600,
+    runmode               => 'service',
+    agent_server_hostname => $agent_server,
+    manage_packages       => !$is_windows,
   }
-  class { 'puppet': runinterval => 3600, runmode => 'service', agent_server_hostname => $agent_server }
 }
