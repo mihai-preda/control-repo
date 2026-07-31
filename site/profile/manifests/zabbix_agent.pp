@@ -1,8 +1,62 @@
 # zabbix agent
-class profile::zabbix_agent {
-  class { 'zabbix::agent':
-    zabbix_version  => '6.0',
-    server          => 'monit.preda.ca,127.0.0.1',
-    manage_firewall => false,
+#
+# Linux nodes install from the Zabbix repo that the module manages. Windows has
+# no such repo, so the vendor MSI is staged on disk first and installed from
+# there.
+#
+# @param version the zabbix release branch, used for the Linux repo packages
+# @param server the zabbix servers this agent accepts checks from
+# @param msi_version the exact agent build installed on Windows
+# @param msi_checksum sha256 of the Windows MSI
+# @param msi_base_url vendor location the Windows MSI is fetched from
+class profile::zabbix_agent (
+  String[1]       $version      = '6.0',
+  String[1]       $server       = 'monit.preda.ca,127.0.0.1',
+  String[1]       $msi_version  = '6.0.48',
+  String[1]       $msi_checksum = '9919e9b93f218b1d90ace4ee3a53e6fef2bab84140d467738888dc20d48e6810',
+  Stdlib::HTTPUrl $msi_base_url = 'https://cdn.zabbix.com/zabbix/binaries/stable',
+) {
+  if $facts['os']['family'] == 'windows' {
+    # The MSI registers the service with --config pointing inside its own
+    # install folder, so every path the module manages has to point back into
+    # it. The module's C:/ProgramData/zabbix defaults would be written but
+    # never read by the service.
+    $install_dir = 'C:/Program Files/Zabbix Agent'
+    $msi_file    = "zabbix_agent-${msi_version}-windows-amd64-openssl.msi"
+    $msi_path    = "C:/Windows/Temp/${msi_file}"
+
+    archive { $msi_path:
+      ensure        => present,
+      source        => "${msi_base_url}/${version}/${msi_version}/${msi_file}",
+      checksum      => $msi_checksum,
+      checksum_type => 'sha256',
+      extract       => false,
+      before        => Class['zabbix::agent'],
+    }
+
+    class { 'zabbix::agent':
+      zabbix_version          => $msi_version,
+      server                  => $server,
+      # The MSI adds its own inbound rule for ListenPort, and the module's
+      # firewall support is iptables-only anyway.
+      manage_firewall         => false,
+      # Default on Windows is chocolatey, which would pull in another module
+      # and a third-party package feed.
+      manage_choco            => false,
+      zabbix_package_provider => 'windows',
+      zabbix_package_source   => $msi_path,
+      # Must match the MSI's ARP display name, otherwise the package is
+      # reinstalled on every run.
+      zabbix_package_agent    => 'Zabbix Agent (64-bit)',
+      agent_configfile_path   => "${install_dir}/zabbix_agentd.conf",
+      include_dir             => "${install_dir}/zabbix_agentd.d",
+      logfile                 => "${install_dir}/zabbix_agentd.log",
+    }
+  } else {
+    class { 'zabbix::agent':
+      zabbix_version  => $version,
+      server          => $server,
+      manage_firewall => false,
+    }
   }
 }
