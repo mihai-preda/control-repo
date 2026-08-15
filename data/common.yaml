@@ -11,6 +11,12 @@ profile::packages::install:
   - curl
   - git
 
+# EPEL ships its own zabbix-server-pgsql/zabbix-agent with an epoch that
+# outranks Zabbix's official packages in RPM version comparison, so it wins
+# 'ensure => latest' even when the real Zabbix repo has a newer version.
+# Zabbix's own install docs recommend excluding it from EPEL for this reason.
+epel::epel_exclude: 'zabbix*'
+
 # Let's Encrypt certificates (profile::certificates).
 # Replace the placeholder with the ENC[PKCS7,...] block printed on the
 # puppetserver by:

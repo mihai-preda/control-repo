@@ -43,6 +43,6 @@ class profile::zabbix (
   # isn't array_matching(:all), so an array is treated as "any of these values
   # is in sync" and only ever writes the first element.
   Yumrepo <| title == 'zabbix' |> {
-    gpgkey => "https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-08EFA7DD\nhttps://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-B5333005",
+    gpgkey => "https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-08EFA7DD\n       https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-B5333005",
   }
 }
