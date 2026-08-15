@@ -39,10 +39,10 @@ class profile::zabbix (
   # Resource title is 'zabbix' (confirmed via the agent run log showing
   # Yumrepo[zabbix]) - the Zabbix_<majorrelease>_<arch> string is only the
   # repo's name/descr, which is what the inifile provider names the file after.
+  # gpgkey must be one newline-joined string, not an array - yumrepo's gpgkey
+  # isn't array_matching(:all), so an array is treated as "any of these values
+  # is in sync" and only ever writes the first element.
   Yumrepo <| title == 'zabbix' |> {
-    gpgkey => [
-      'https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-08EFA7DD',
-      'https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-B5333005',
-    ],
+    gpgkey => "https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-08EFA7DD\nhttps://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-B5333005",
   }
 }
