@@ -32,4 +32,14 @@ class profile::zabbix (
     database_type        => 'postgresql',
     database_password    => $database_password,
   }
+
+  # zabbix::repo hardcodes RPM-GPG-KEY-ZABBIX-08EFA7DD for EL9, but the 7.0
+  # server packages are actually signed with RPM-GPG-KEY-ZABBIX-B5333005.
+  # There's no module parameter for this, so override the yumrepo it declares.
+  Yumrepo <| title == 'zabbix' |> {
+    gpgkey => [
+      'https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-08EFA7DD',
+      'https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-B5333005',
+    ],
+  }
 }
