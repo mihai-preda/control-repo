@@ -12,7 +12,7 @@ class profile::zabbix (
     database_password  => $database_password,
     zabbix_timezone    => 'America/Vancouver',
     manage_repo        => true,
-    zabbix_version     => '6.0',
+    zabbix_version     => '7.0',
     apache_use_ssl     => true,
     database_host      => 'db.preda.ca',
     database_type      => 'postgresql',

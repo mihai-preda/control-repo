@@ -10,10 +10,10 @@
 # @param msi_checksum sha256 of the Windows MSI
 # @param msi_base_url vendor location the Windows MSI is fetched from
 class profile::zabbix_agent (
-  String[1]       $version      = '6.0',
+  String[1]       $version      = '7.0',
   String[1]       $server       = 'monit.preda.ca,127.0.0.1',
-  String[1]       $msi_version  = '6.0.48',
-  String[1]       $msi_checksum = '9919e9b93f218b1d90ace4ee3a53e6fef2bab84140d467738888dc20d48e6810',
+  String[1]       $msi_version  = '7.0.29',
+  String[1]       $msi_checksum = '64199cc1cf68e9f562eb55020a8aaeebc52056b5f70f08f660ab8c84c4f7ef30',
   Stdlib::HTTPUrl $msi_base_url = 'https://cdn.zabbix.com/zabbix/binaries/stable',
 ) {
   if $facts['os']['family'] == 'windows' {

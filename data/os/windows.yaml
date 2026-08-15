@@ -2,6 +2,6 @@
 ---
 # Windows has no Zabbix package repo, so the agent is pinned to a vendor MSI
 # build. To move to a newer agent, bump both keys together - the checksum
-# belongs to the file published under <msi_base_url>/6.0/<msi_version>/.
-profile::zabbix_agent::msi_version: '6.0.48'
-profile::zabbix_agent::msi_checksum: '9919e9b93f218b1d90ace4ee3a53e6fef2bab84140d467738888dc20d48e6810'
+# belongs to the file published under <msi_base_url>/7.0/<msi_version>/.
+profile::zabbix_agent::msi_version: '7.0.29'
+profile::zabbix_agent::msi_checksum: '64199cc1cf68e9f562eb55020a8aaeebc52056b5f70f08f660ab8c84c4f7ef30'
