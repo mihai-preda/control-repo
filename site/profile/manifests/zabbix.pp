@@ -36,10 +36,10 @@ class profile::zabbix (
   # zabbix::repo hardcodes RPM-GPG-KEY-ZABBIX-08EFA7DD for EL9, but the 7.0
   # server packages are actually signed with RPM-GPG-KEY-ZABBIX-B5333005.
   # There's no module parameter for this, so override the yumrepo it declares.
-  # Title is the module's computed "Zabbix_<majorrelease>_<arch>" string, not
-  # 'zabbix' - confirmed from the deployed /etc/yum.repos.d/*.repo filename.
-  # Collector queries don't support =~, so match the computed title exactly.
-  Yumrepo <| title == "Zabbix_${facts['os']['release']['major']}_${facts['os']['architecture']}" |> {
+  # Resource title is 'zabbix' (confirmed via the agent run log showing
+  # Yumrepo[zabbix]) - the Zabbix_<majorrelease>_<arch> string is only the
+  # repo's name/descr, which is what the inifile provider names the file after.
+  Yumrepo <| title == 'zabbix' |> {
     gpgkey => [
       'https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-08EFA7DD',
       'https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-B5333005',
