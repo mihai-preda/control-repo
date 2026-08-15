@@ -24,12 +24,12 @@ class profile::zabbix (
   class { 'apache::mod::ssl': }
   class { 'postgresql::client': }
   class { 'zabbix::server':
-    zabbix_version        => '7.0',
-    zabbix_package_state  => 'latest',
-    database_host         => 'db.preda.ca',
-    database_name         => 'zabbixdb',
-    database_user         => 'zabbix_user',
-    database_type         => 'postgresql',
-    database_password     => $database_password,
+    zabbix_version       => '7.0',
+    zabbix_package_state => 'latest',
+    database_host        => 'db.preda.ca',
+    database_name        => 'zabbixdb',
+    database_user        => 'zabbix_user',
+    database_type        => 'postgresql',
+    database_password    => $database_password,
   }
 }
