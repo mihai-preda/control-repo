@@ -58,5 +58,12 @@ class profile::zabbix_agent (
       server          => $server,
       manage_firewall => false,
     }
+
+    # zabbix::repo hardcodes RPM-GPG-KEY-ZABBIX-08EFA7DD for EL9, but 7.0
+    # packages are actually signed with RPM-GPG-KEY-ZABBIX-B5333005. Same
+    # gap as profile::zabbix - see the collector override there for details.
+    Yumrepo <| title == 'zabbix' |> {
+      gpgkey => "https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-08EFA7DD\n       https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-B5333005",
+    }
   }
 }
