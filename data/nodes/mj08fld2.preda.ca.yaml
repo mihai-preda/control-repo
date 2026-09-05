@@ -1,5 +1,13 @@
 # data/nodes/mj08fld2.preda.ca.yaml
 ---
+# certbot cannot be installed on AlmaLinux 10.2: EPEL's only python3-pyOpenSSL
+# build (26.3.0-1.el10_3, built against RHEL 10.3) needs
+# python3.12dist(cryptography) >= 49, and 10.2 BaseOS ships 43.0.0-4.el10.
+# Nothing in Puppet can resolve that - it clears when this host reaches Alma
+# 10.3. Until then Cockpit keeps serving the cert already on disk.
+# TODO: the existing cert expires 2026-11-12. Re-enable and renew before then.
+profile::certificates::enabled: false
+
 accounts::user_list:
   mihai:
     groups: [wheel, users, libvirt]

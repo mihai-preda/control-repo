@@ -7,7 +7,10 @@
 class profile::cockpit (
   Array[String[1]] $packages = ['cockpit'],
 ) {
-  require profile::certificates
+  # Only the cert copies below depend on Let's Encrypt, so this is deliberately
+  # `include` rather than a class-level `require`: a certbot failure must not
+  # take the packages and the web console socket down with it.
+  include profile::certificates
 
   $live_dir = "/etc/letsencrypt/live/${facts['networking']['fqdn']}"
 
@@ -32,7 +35,7 @@ class profile::cockpit (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    require => Package[$packages],
+    require => [Package[$packages], Class['profile::certificates']],
     notify  => Exec['restart cockpit'],
   }
 
@@ -44,7 +47,7 @@ class profile::cockpit (
     group     => 'root',
     mode      => '0600',
     show_diff => false,
-    require   => Package[$packages],
+    require   => [Package[$packages], Class['profile::certificates']],
     notify    => Exec['restart cockpit'],
   }
 
