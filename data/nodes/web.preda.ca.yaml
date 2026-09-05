@@ -3,6 +3,10 @@
 
 profile::puppetboard::secret_key: "ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEAFGRH8c4tuby1trDqkC9gqLkEYcPM1wicDdwXZWbWSEmwBMpPoQzgDtIfmucEIgWQBYeguJuq+MclElKsQlFLhs72r9D+/tudoQwfVYQ2So4G7M2VJwh4idPHwjM/ONZhiZLDy8SFH0Vy97rh2SGkWE8mmSxx/1F2GuptZ2QBs1egfihJbehMsaQ8S8WZ4ugADsf1DQP0zLzFoE+t7qXu6SFDV2rNKBgJEdSz/pdBUmDpcanb84Msnmzwrowl1XnVkqaj+0A2zRk2jvUexqzDPKAS/vuRhpxS1JbVEO4hCM7mc496KYoP7XjwEU9CYI0c0EcQH7sYna8NwVc8coe73TBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBBIBjUWRnkblh9b55gW6y7bgCCLEgzl8YnofUYKRoXdrIaOZaFRbTIG6vvvIV4MtXRJXg==]"
 
+# Front the Tomcat backend on app-srv1 so browsers get a trusted cert; the
+# proxy->Tomcat hop stays encrypted against Tomcat's self-signed cert.
+profile::app_proxy::backend_url: 'https://app-srv1.preda.ca:8443/'
+
 firewalld::default_zone: 'public'
 firewalld::service_ensure: 'running'
 
@@ -39,4 +43,11 @@ firewalld::services:
   cockpit:
     ensure: absent
     service: cockpit
-    zone: public  
+    zone: public
+
+firewalld::ports:
+  'Open the Tomcat reverse-proxy port':
+    ensure: present
+    zone: public
+    port: 8443
+    protocol: 'tcp'

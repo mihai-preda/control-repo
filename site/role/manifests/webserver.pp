@@ -2,6 +2,7 @@
 class role::webserver {
   include profile::certificates
   include profile::puppetboard
+  include profile::app_proxy
   include profile::resolver
   include accounts
   include firewalld
