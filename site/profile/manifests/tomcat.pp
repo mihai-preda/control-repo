@@ -18,9 +18,13 @@
 # @param test_app deploy the /test smoke-test webapp (a single JSP reporting
 #   container, JVM and connector). Off by default; this is a lab aid, not
 #   something to ship on a real app server.
+# @param https_source restrict the 8443 connector to this source address, for
+#   the reverse proxy that fronts it. Left undef, 8443 is open to the whole
+#   zone instead.
 class profile::tomcat (
-  String[1] $package_name = 'tomcat',
-  Boolean   $test_app     = false,
+  String[1]                                   $package_name = 'tomcat',
+  Boolean                                     $test_app     = false,
+  Optional[Stdlib::IP::Address::V4::CIDR]     $https_source = undef,
 ) {
   # CATALINA_HOME as laid out by the RPM. conf/ is a symlink to /etc/tomcat,
   # so the connector resources below edit /etc/tomcat/server.xml through it.
@@ -137,19 +141,47 @@ class profile::tomcat (
     }
   }
 
-  # This node runs firewalld, so open the Tomcat ports with firewalld_port
+  # This node runs firewalld, so manage the Tomcat ports with firewalld_port
   # rather than the iptables `firewall` type, which has no persistence here.
+  #
+  # The plain HTTP connector is never exposed off-box: it still listens on
+  # 8081 for local troubleshooting, but nothing outside the host may reach it.
+  # Held at absent rather than deleted so the previously-open port is actively
+  # withdrawn from any node that had it.
   firewalld_port { 'tomcat-http':
-    ensure   => present,
+    ensure   => absent,
     zone     => 'public',
     port     => 8081,
     protocol => 'tcp',
   }
 
-  firewalld_port { 'tomcat-https':
-    ensure   => present,
-    zone     => 'public',
-    port     => 8443,
-    protocol => 'tcp',
+  if $https_source {
+    # 8443 is reachable only from the httpd reverse proxy - see
+    # profile::app_proxy on the web node. The zone-wide port rule is withdrawn
+    # in favour of the source-scoped rich rule.
+    firewalld_port { 'tomcat-https':
+      ensure   => absent,
+      zone     => 'public',
+      port     => 8443,
+      protocol => 'tcp',
+    }
+
+    firewalld_rich_rule { 'tomcat-https-from-proxy':
+      ensure => present,
+      zone   => 'public',
+      source => $https_source,
+      port   => {
+        'port'     => '8443',
+        'protocol' => 'tcp',
+      },
+      action => 'accept',
+    }
+  } else {
+    firewalld_port { 'tomcat-https':
+      ensure   => present,
+      zone     => 'public',
+      port     => 8443,
+      protocol => 'tcp',
+    }
   }
 }
