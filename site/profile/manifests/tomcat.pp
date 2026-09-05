@@ -15,8 +15,12 @@
 #
 # @param package_name the AppStream package to install. EL10 also ships a
 #   parallel-installable 'tomcat9' if the 9.0.x branch is wanted there.
+# @param test_app deploy the /test smoke-test webapp (a single JSP reporting
+#   container, JVM and connector). Off by default; this is a lab aid, not
+#   something to ship on a real app server.
 class profile::tomcat (
   String[1] $package_name = 'tomcat',
+  Boolean   $test_app     = false,
 ) {
   # CATALINA_HOME as laid out by the RPM. conf/ is a symlink to /etc/tomcat,
   # so the connector resources below edit /etc/tomcat/server.xml through it.
@@ -108,6 +112,29 @@ class profile::tomcat (
       File[$key],
       File[$cert],
     ],
+  }
+
+  # Smoke-test webapp: one JSP served from an exploded directory under the
+  # RPM's webapps root. Deliberately not the tomcat-webapps subpackage - that
+  # drags in the examples app. Exercising a JSP rather than static HTML proves
+  # Jasper and ecj compile at request time, not just that the connector answers.
+  if $test_app {
+    file { '/var/lib/tomcat/webapps/test':
+      ensure  => directory,
+      owner   => 'tomcat',
+      group   => 'tomcat',
+      mode    => '0755',
+      require => Tomcat::Install[$catalina_home],
+    }
+
+    file { '/var/lib/tomcat/webapps/test/index.jsp':
+      ensure  => file,
+      owner   => 'tomcat',
+      group   => 'tomcat',
+      mode    => '0644',
+      source  => 'puppet:///modules/profile/testapp/index.jsp',
+      require => File['/var/lib/tomcat/webapps/test'],
+    }
   }
 
   # This node runs firewalld, so open the Tomcat ports with firewalld_port

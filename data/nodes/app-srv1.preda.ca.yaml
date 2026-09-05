@@ -1,6 +1,8 @@
 # data/nodes/app-srv1.preda.ca.yaml
 ---
 
+profile::tomcat::test_app: true
+
 profile::hiera_test::ssl: true
 profile::hiera_test::backups_enabled: true
 profile::hiera_test::site_alias: app-srv1.preda.ca
