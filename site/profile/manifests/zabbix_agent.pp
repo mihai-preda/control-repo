@@ -53,10 +53,18 @@ class profile::zabbix_agent (
       logfile                 => "${install_dir}/zabbix_agentd.log",
     }
   } else {
+    # EL10's selinux-policy ships no zabbix types at all, so the module's
+    # zabbix-agent.te - which opens with `require { type zabbix_agent_t; }` -
+    # fails to load with "Failed to resolve typeattributeset statement", and
+    # that takes Service[zabbix-agent] down with it. The agent runs unconfined
+    # there, so the policy module has nothing to grant.
+    $manage_selinux = versioncmp($facts['os']['release']['major'], '10') < 0
+
     class { 'zabbix::agent':
       zabbix_version  => $version,
       server          => $server,
       manage_firewall => false,
+      manage_selinux  => $manage_selinux,
     }
 
     # zabbix::repo hardcodes RPM-GPG-KEY-ZABBIX-08EFA7DD for EL9, but 7.0
