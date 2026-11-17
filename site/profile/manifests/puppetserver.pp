@@ -1,15 +1,19 @@
 # puppet server profile
 class profile::puppetserver {
-  package { 'puppetserver':
+  # OpenVox builds replace the Perforce packages but do not Provide the old
+  # names, so they have to be named explicitly. Service names, paths and
+  # binaries are unchanged.
+  package { 'openvox-server':
     ensure => 'installed',
   }
   service { 'puppetserver':
     ensure  => true,
     enable  => true,
-    require => Package['puppetserver'],
+    require => Package['openvox-server'],
   }
   # Configure the Puppet master to use puppetdb
   class { 'puppetdb::master::config':
+    terminus_package        => 'openvoxdb-termini',
     enable_reports          => true,
     manage_report_processor => true,
     puppetdb_server         => 'db.preda.ca',

@@ -5,6 +5,8 @@ class profile::puppetdb (
 ) {
   # Configure puppetdb and its underlying database
   class { 'puppetdb':
+    # the OpenVox build; it replaces 'puppetdb' without Providing that name
+    puppetdb_package        => 'openvoxdb',
     postgresql_ssl_on       => false,
     database_host           => 'db.preda.ca',
     database_listen_address => '0.0.0.0',
