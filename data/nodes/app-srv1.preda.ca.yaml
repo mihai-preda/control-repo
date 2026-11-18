@@ -4,6 +4,7 @@
 profile::tomcat::test_app: true
 
 # 8443 is reachable only from the httpd reverse proxy on web.preda.ca
+# Full URL: https://web.preda.ca:8443/test/
 # (profile::app_proxy); web sources from 10.21.2.11 on the 10.21.2.0/24 leg.
 profile::tomcat::https_source: '10.21.2.11/32'
 

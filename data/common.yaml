@@ -10,7 +10,8 @@ profile::packages::install:
   - vim
   - curl
   - git
-
+  - bash-completion
+  
 # EPEL ships its own zabbix-server-pgsql/zabbix-agent with an epoch that
 # outranks Zabbix's official packages in RPM version comparison, so it wins
 # 'ensure => latest' even when the real Zabbix repo has a newer version.
