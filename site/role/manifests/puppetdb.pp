@@ -5,6 +5,7 @@ class role::puppetdb {
   include profile::zabbixdb
   include profile::resolver
   include profile::base
+  include profile::openvox_agent
   include epel
   include profile::zabbix_agent
 }

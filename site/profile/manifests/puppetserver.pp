@@ -11,6 +11,13 @@ class profile::puppetserver {
     enable  => true,
     require => Package['openvox-server'],
   }
+  # Run the agent as a daemon. profile::openvox_agent is not used here: its
+  # foreman puppet class owns the whole puppet.conf and would fight the
+  # [server]/[master] ini_settings that puppetdb::master::config manages.
+  service { 'puppet':
+    ensure => running,
+    enable => true,
+  }
   # Configure the Puppet master to use puppetdb
   class { 'puppetdb::master::config':
     terminus_package        => 'openvoxdb-termini',

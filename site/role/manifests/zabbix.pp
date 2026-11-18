@@ -6,6 +6,7 @@ class role::zabbix {
   include accounts
   include firewalld
   include profile::base
+  include profile::openvox_agent
   include epel
   include profile::zabbix_agent
 }
